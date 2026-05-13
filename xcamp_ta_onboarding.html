@@ -108,7 +108,8 @@
   }
   .badge-a { background: var(--accent-a-light); color: var(--accent-a); }
   .badge-b { background: var(--accent-b-light); color: var(--accent-b); }
-  .badge-c { background: #fef3e2; color: #b45309; }
+  .badge-c { background: #f0ede8; color: var(--text-muted); }
+  .nav-item.active-c .badge-c { background: #fef3e2; color: #b45309; }
 
   .main {
     margin-left: var(--sidebar-w);
@@ -753,10 +754,7 @@
       <div class="card" style="text-align:center;padding:28px;color:var(--text-muted);font-size:13.5px">
         <img src="schedule_spring2026.png" alt="HWN Schedule Spring 2026" style="width:100%;border-radius:8px">
       </div>
-      <div class="callout callout-gray" style="margin-top:8px">
-        <span class="callout-icon">📌</span>
-        <span><strong>In-person / Summer Camp:</strong> Students may walk up and ask questions directly. The same tagging and record-keeping still applies — update Discourse post status after answering in person.</span>
-      </div>
+
     </div>
     <div style="display:flex;justify-content:space-between;margin-top:8px">
       <button class="tab-btn" onclick="showPage('a1')" style="font-size:13px">← A1: Goal</button>
@@ -1356,6 +1354,10 @@
       </div>
 
       <div class="callout" style="background:#fef3e2;border-left:3px solid #b45309;margin-top:16px">
+        <span class="callout-icon">📌</span>
+        <span>If a student has posted their question on Discourse, update the tag after answering in person — <strong>Answered by voice</strong> if solved verbally, or reply in Discourse if a written explanation would be helpful. Keep the record complete either way.</span>
+      </div>
+      <div class="callout" style="background:#fef3e2;border-left:3px solid #b45309;margin-top:8px">
         <span class="callout-icon">⚠️</span>
         <span>If you have a teaching question you can't answer, direct it to the <strong>Lead Teacher</strong>. For logistics or access issues, contact the <strong>AO / CC</strong>.</span>
       </div>
