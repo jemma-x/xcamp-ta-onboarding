@@ -1246,12 +1246,45 @@
 
   // ── Section filter ──
   function filterSection(sec) {
+    // Update tab styles
     ['all','a','b'].forEach(s => {
       document.getElementById('tab-'+s).className = 'tab-btn';
     });
     if (sec === 'all') document.getElementById('tab-all').classList.add('active-all');
     if (sec === 'a')   document.getElementById('tab-a').classList.add('active-a');
     if (sec === 'b')   document.getElementById('tab-b').classList.add('active-b');
+
+    // Show/hide sidebar nav items
+    document.querySelectorAll('.nav-item').forEach(n => {
+      const onclick = n.getAttribute('onclick') || '';
+      const isOverview = onclick.includes("'overview'");
+      const isA = onclick.match(/'a[1-9]/);
+      const isB = onclick.match(/'b[1-9]/);
+      if (sec === 'all') {
+        n.style.display = 'block';
+      } else if (sec === 'a') {
+        n.style.display = (isOverview || isA) ? 'block' : 'none';
+      } else if (sec === 'b') {
+        n.style.display = (isB) ? 'block' : 'none';
+      }
+    });
+
+    // Show/hide sidebar section labels
+    document.querySelectorAll('.nav-section').forEach(ns => {
+      const txt = ns.textContent;
+      if (sec === 'all') {
+        ns.style.display = 'block';
+      } else if (sec === 'a') {
+        ns.style.display = (txt.includes('Overview') || txt.includes('Section A')) ? 'block' : 'none';
+      } else if (sec === 'b') {
+        ns.style.display = txt.includes('Section B') ? 'block' : 'none';
+      }
+    });
+
+    // Navigate to correct starting page
+    if (sec === 'a')   showPage('overview');
+    if (sec === 'b')   showPage('b1');
+    if (sec === 'all') showPage('overview');
   }
 
   // ── Role detail toggle ──
