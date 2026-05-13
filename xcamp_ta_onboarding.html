@@ -95,6 +95,7 @@
   .nav-item:hover { color: var(--text); background: var(--bg); }
   .nav-item.active-a { color: var(--accent-a); border-left-color: var(--accent-a); background: var(--accent-a-light); font-weight: 500; }
   .nav-item.active-b { color: var(--accent-b); border-left-color: var(--accent-b); background: var(--accent-b-light); font-weight: 500; }
+  .nav-item.active-c { color: #b45309; border-left-color: #b45309; background: #fef3e2; font-weight: 500; }
 
   .section-badge {
     display: inline-block;
@@ -107,6 +108,7 @@
   }
   .badge-a { background: var(--accent-a-light); color: var(--accent-a); }
   .badge-b { background: var(--accent-b-light); color: var(--accent-b); }
+  .badge-c { background: #fef3e2; color: #b45309; }
 
   .main {
     margin-left: var(--sidebar-w);
@@ -139,6 +141,7 @@
   .tab-btn:hover { border-color: #aaa; color: var(--text); }
   .tab-btn.active-a { background: var(--accent-a); border-color: var(--accent-a); color: #fff; }
   .tab-btn.active-b { background: var(--accent-b); border-color: var(--accent-b); color: #fff; }
+  .tab-btn.active-c { background: #b45309; border-color: #b45309; color: #fff; }
   .tab-btn.active-all { background: var(--text); border-color: var(--text); color: #fff; }
 
   /* ── Page sections ── */
@@ -539,6 +542,14 @@
   <a class="nav-item" onclick="showPage('b3')"><span class="section-badge badge-b">B3</span> Running Sessions</a>
   <a class="nav-item" onclick="showPage('b4')"><span class="section-badge badge-b">B4</span> Case Studies</a>
   <a class="nav-item" onclick="showPage('b5')"><span class="section-badge badge-b">B5</span> First Session Checklist</a>
+
+  <div class="nav-section">Section C — In-Person</div>
+  <a class="nav-item" onclick="showPage('c1')"><span class="section-badge badge-c">C1</span> Your Goal</a>
+  <a class="nav-item" onclick="showPage('c2')"><span class="section-badge badge-c">C2</span> Arrival & Pre-Class</a>
+  <a class="nav-item" onclick="showPage('c3')"><span class="section-badge badge-c">C3</span> Your In-Class Role</a>
+  <a class="nav-item" onclick="showPage('c4')"><span class="section-badge badge-c">C4</span> Gaming Escalation</a>
+  <a class="nav-item" onclick="showPage('c5')"><span class="section-badge badge-c">C5</span> 5-Step Help Framework</a>
+  <a class="nav-item" onclick="showPage('c6')"><span class="section-badge badge-c">C6</span> After Class Checklist</a>
 </nav>
 
 <!-- ── Main ── -->
@@ -549,6 +560,7 @@
     <button class="tab-btn" onclick="filterSection('all')" id="tab-all">📚 All Sections</button>
     <button class="tab-btn" onclick="filterSection('a')" id="tab-a">🌙 Section A — HWN</button>
     <button class="tab-btn" onclick="filterSection('b')" id="tab-b">🗓 Section B — 1 on 1 OH</button>
+    <button class="tab-btn" onclick="filterSection('c')" id="tab-c">🏫 Section C — In-Person</button>
   </div>
 
   <!-- ── OVERVIEW ── -->
@@ -575,6 +587,18 @@
           <div class="a-icon">📖</div>
           <div class="a-title">Both Sections</div>
           <div class="a-sub">Assigned to both</div>
+        </div>
+        <div class="assignment-card" onclick="filterSection('c'); showPage('c1')" style="border-color:#b45309;background:#fef3e2">
+          <div class="a-icon">🏫</div>
+          <div class="a-title">Section C</div>
+          <div class="a-sub">Assigned to In-Person</div>
+        </div>
+      </div>
+      <div class="callout" style="background:#f0ede8;border-left:3px solid #888;margin-top:16px">
+        <span class="callout-icon">📖</span>
+        <div>
+          <strong>Assigned to more than one role?</strong>
+          <p style="margin-top:4px;margin-bottom:0;font-size:13.5px">Read the sections that match your assignment. Use the top tabs to switch between sections anytime.</p>
         </div>
       </div>
     </div>
@@ -663,7 +687,7 @@
         </ul>
         <div class="callout callout-warn" style="margin-top:14px">
           <span class="callout-icon">⚠️</span>
-          <span>When a student posts a Zoom chat message with their Discourse link, always go to the <strong>Discourse post</strong> to handle it — don't just respond in Zoom chat.</span>
+          <span>When a student posts a Zoom chat message with their Discourse link, always go to the <strong>Discourse post</strong> to handle it. If the issue cannot be solved by voice, reply in Discourse — and don't forget to update the tag accordingly.</span>
         </div>
       </div>
 
@@ -693,6 +717,7 @@
       </div>
 
       <h3 style="margin-top:28px">📊 Level Coverage by Role</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:10px">Refer to the HWN schedule below to see which TA covers which level on your shift.</p>
       <div class="tbl-wrap">
         <table>
           <thead><tr><th>Role</th><th>Typical coverage</th></tr></thead>
@@ -709,7 +734,7 @@
         <span>This schedule is for <strong>Spring 2026</strong> and is updated each quarter. If you are onboarding in a later quarter, check with your Program Manager for the current schedule.</span>
       </div>
       <div class="card" style="text-align:center;padding:28px;color:var(--text-muted);font-size:13.5px">
-        🖼 <em>Insert schedule screenshot here</em>
+        <img src="schedule_spring2026.png" alt="HWN Schedule Spring 2026" style="width:100%;border-radius:8px">
       </div>
       <div class="callout callout-gray" style="margin-top:8px">
         <span class="callout-icon">📌</span>
@@ -1223,10 +1248,231 @@
     </div>
     <div style="display:flex;justify-content:space-between;margin-top:8px">
       <button class="tab-btn" onclick="showPage('b4')" style="font-size:13px">← B4: Cases</button>
-      <button class="tab-btn" onclick="showPage('overview')" style="font-size:13px">↩ Back to Overview</button>
+      <button class="tab-btn" onclick="filterSection('c');showPage('c1')" style="font-size:13px">Start Section C →</button>
     </div>
   </div>
 
+
+  <!-- ── C1 ── -->
+  <div class="page-section" id="page-c1">
+    <div class="doc-section">
+      <div class="section-header" style="border-bottom-color:#b45309">
+        <div class="section-icon" style="background:#fef3e2"><span style="font-size:18px">🎯</span></div>
+        <div><div class="section-num">SECTION C · C1</div><h2>Your Goal</h2></div>
+      </div>
+      <p>In-person TA work is different from HWN and 1 on 1 OH. You're physically present in the classroom, which means you're responsible for both the learning environment and individual student support — at the same time.</p>
+      <div class="card" style="margin:16px 0">
+        <p style="margin-bottom:10px;font-weight:600;font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">Your three responsibilities</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="font-size:16px">👀</span><span><strong>Environment:</strong> Keep students on-task, manage device use, maintain a productive classroom atmosphere</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="font-size:16px">🤝</span><span><strong>Individual support:</strong> Help students who are stuck using guided questions, not direct answers</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="font-size:16px">📋</span><span><strong>Communication:</strong> Brief parents after class, flag incidents to the lead teacher</span></div>
+        </div>
+      </div>
+      <div class="callout" style="background:#fef3e2;border-left:3px solid #b45309">
+        <span class="callout-icon">💡</span>
+        <span>As with all TA roles: your job is to <strong>help students find their own path</strong>, not to give answers. The 5-step help framework in C5 applies here too.</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('overview')" style="font-size:13px">← Overview</button>
+      <button class="tab-btn active-c" onclick="showPage('c2')" style="font-size:13px">C2: Arrival →</button>
+    </div>
+  </div>
+
+  <!-- ── C2 ── -->
+  <div class="page-section" id="page-c2">
+    <div class="doc-section">
+      <div class="section-header" style="border-bottom-color:#b45309">
+        <div class="section-icon" style="background:#fef3e2"><span style="font-size:18px">🕐</span></div>
+        <div><div class="section-num">SECTION C · C2</div><h2>Arrival & Pre-Class</h2></div>
+      </div>
+      <div class="callout" style="background:#1a1815;border-left:3px solid #b45309;margin-bottom:20px">
+        <span class="callout-icon" style="font-size:22px">−10</span>
+        <span style="color:#f7f6f2"><strong>Arrive 10 minutes before class starts.</strong> This is paid working time — not optional.</span>
+      </div>
+      <p>Use the time before class to set up the environment so the session can start cleanly.</p>
+      <div class="progress-wrap" style="margin-bottom:16px">
+        <div class="progress-label"><span>Pre-class checklist</span><span id="progress-c2-text">0 / 5</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-c2-fill" style="width:0%;background:#b45309"></div></div>
+      </div>
+      <ul class="checklist" id="checklist-c2">
+        <li onclick="toggleCheck(this,'c2')"><div class="check-box"></div><div><span class="check-label" style="font-weight:600">Sign students in</span><br><span style="font-size:13px;color:var(--text-muted)">Check roster, note absences</span></div></li>
+        <li onclick="toggleCheck(this,'c2')"><div class="check-box"></div><div><span class="check-label" style="font-weight:600">Greet parents</span><br><span style="font-size:13px;color:var(--text-muted)">Brief check-in; collect any concerns to pass to teacher</span></div></li>
+        <li onclick="toggleCheck(this,'c2')"><div class="check-box"></div><div><span class="check-label" style="font-weight:600">Observe student state</span><br><span style="font-size:13px;color:var(--text-muted)">Energy, mood, anything unusual</span></div></li>
+        <li onclick="toggleCheck(this,'c2')"><div class="check-box"></div><div><span class="check-label" style="font-weight:600">Seat setup</span><br><span style="font-size:13px;color:var(--text-muted)">High-risk students front/near teacher; separate close friends</span></div></li>
+        <li onclick="toggleCheck(this,'c2')"><div class="check-box"></div><div><span class="check-label" style="font-weight:600">Tech check</span><br><span style="font-size:13px;color:var(--text-muted)">Projector, student logins, IDE accessible</span></div></li>
+      </ul>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('c1')" style="font-size:13px">← C1: Goal</button>
+      <button class="tab-btn active-c" onclick="showPage('c3')" style="font-size:13px">C3: In-Class Role →</button>
+    </div>
+  </div>
+
+  <!-- ── C3 ── -->
+  <div class="page-section" id="page-c3">
+    <div class="doc-section">
+      <div class="section-header" style="border-bottom-color:#b45309">
+        <div class="section-icon" style="background:#fef3e2"><span style="font-size:18px">🏫</span></div>
+        <div><div class="section-num">SECTION C · C3</div><h2>Your In-Class Role</h2></div>
+      </div>
+
+      <h3>🟠 During lecture</h3>
+      <div class="card" style="margin-bottom:16px">
+        <ul style="margin:0">
+          <li>Patrol the room — don't sit still</li>
+          <li>Stand behind students showing off-task signs</li>
+          <li>Screen monitor: only IDE / course pages open</li>
+          <li>Use tactical silence (stop, look, wait 5s)</li>
+        </ul>
+      </div>
+
+      <h3>🟠 During work time</h3>
+      <div class="card">
+        <ul style="margin:0">
+          <li>Circulate every 5–7 minutes</li>
+          <li>Check in with quiet students proactively — don't wait for them to raise their hand</li>
+          <li>Use the 5-step hint system (see C5)</li>
+          <li>Note students who finish early → give them a challenge problem</li>
+        </ul>
+      </div>
+
+      <div class="callout" style="background:#fef3e2;border-left:3px solid #b45309;margin-top:16px">
+        <span class="callout-icon">⚠️</span>
+        <span>If you have a teaching question you can't answer, direct it to the <strong>Lead Teacher</strong>. For logistics or access issues, contact the <strong>AO / CC</strong>.</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('c2')" style="font-size:13px">← C2: Arrival</button>
+      <button class="tab-btn active-c" onclick="showPage('c4')" style="font-size:13px">C4: Gaming Escalation →</button>
+    </div>
+  </div>
+
+  <!-- ── C4 ── -->
+  <div class="page-section" id="page-c4">
+    <div class="doc-section">
+      <div class="section-header" style="border-bottom-color:#b45309">
+        <div class="section-icon" style="background:#fef3e2"><span style="font-size:18px">🎮</span></div>
+        <div><div class="section-num">SECTION C · C4</div><h2>Gaming & Off-Task Device Use — Escalation Flow</h2></div>
+      </div>
+      <p style="margin-bottom:16px">Follow this sequence in order. Don't skip steps.</p>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="card" style="border-left:3px solid #16a34a">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="background:#16a34a;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;margin-top:2px">01 1ST OFFENSE</div>
+            <div>
+              <p style="font-weight:600;margin-bottom:4px">Verbal warning</p>
+              <p style="font-size:13.5px;color:var(--text-muted)">Walk over quietly. Low voice: "Please close that and open [correct page]." Close the tab together.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="border-left:3px solid #d97706">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="background:#d97706;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;margin-top:2px">02 2ND OFFENSE</div>
+            <div>
+              <p style="font-weight:600;margin-bottom:4px">Record & move seat</p>
+              <p style="font-size:13.5px;color:var(--text-muted)">Write student name + time. Quietly move them to front row or beside teacher. No lecture needed.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="border-left:3px solid #dc2626">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="background:#dc2626;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;margin-top:2px">03 3RD OFFENSE</div>
+            <div>
+              <p style="font-weight:600;margin-bottom:4px">Notify parent after class</p>
+              <p style="font-size:13.5px;color:var(--text-muted)">Inform lead teacher during class. Send parent a brief note post-class.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="border-left:3px solid #7c3aed">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="background:#7c3aed;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;margin-top:2px">04 REPEATED</div>
+            <div>
+              <p style="font-weight:600;margin-bottom:4px">Supervisor escalation</p>
+              <p style="font-size:13.5px;color:var(--text-muted)">Escalate to teaching lead. May result in individual behavior agreement or removal from session.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('c3')" style="font-size:13px">← C3: In-Class Role</button>
+      <button class="tab-btn active-c" onclick="showPage('c5')" style="font-size:13px">C5: Help Framework →</button>
+    </div>
+  </div>
+
+  <!-- ── C5 ── -->
+  <div class="page-section" id="page-c5">
+    <div class="doc-section">
+      <div class="section-header" style="border-bottom-color:#b45309">
+        <div class="section-icon" style="background:#fef3e2"><span style="font-size:18px">🪜</span></div>
+        <div><div class="section-num">SECTION C · C5</div><h2>5-Step Student Help Framework</h2></div>
+      </div>
+      <p style="margin-bottom:16px">Use this every time a student asks for help. Work through the steps in order — don't jump to the answer.</p>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="card" style="border-left:3px solid #b45309;display:flex;gap:14px;align-items:flex-start">
+          <div style="background:#b45309;color:#fff;font-size:11px;font-weight:700;min-width:52px;text-align:center;padding:4px 0;border-radius:6px;flex-shrink:0">Step 1</div>
+          <div><p style="font-weight:600;margin-bottom:3px">Understand</p><p style="font-size:13.5px;color:var(--text-muted)">"What are you trying to do? What have you tried?"</p></div>
+        </div>
+        <div class="card" style="border-left:3px solid #b45309;display:flex;gap:14px;align-items:flex-start">
+          <div style="background:#b45309;color:#fff;font-size:11px;font-weight:700;min-width:52px;text-align:center;padding:4px 0;border-radius:6px;flex-shrink:0">Step 2</div>
+          <div><p style="font-weight:600;margin-bottom:3px">Identify gap</p><p style="font-size:13.5px;color:var(--text-muted)">Conceptual? Strategic? Syntax? Bug? Confidence?</p></div>
+        </div>
+        <div class="card" style="border-left:3px solid #b45309;display:flex;gap:14px;align-items:flex-start">
+          <div style="background:#b45309;color:#fff;font-size:11px;font-weight:700;min-width:52px;text-align:center;padding:4px 0;border-radius:6px;flex-shrink:0">Step 3</div>
+          <div><p style="font-weight:600;margin-bottom:3px">Ask questions</p><p style="font-size:13.5px;color:var(--text-muted)">"What would happen if the input was [simple example]?"</p></div>
+        </div>
+        <div class="card" style="border-left:3px solid #b45309;display:flex;gap:14px;align-items:flex-start">
+          <div style="background:#b45309;color:#fff;font-size:11px;font-weight:700;min-width:52px;text-align:center;padding:4px 0;border-radius:6px;flex-shrink:0">Step 4</div>
+          <div><p style="font-weight:600;margin-bottom:3px">Minimum hint</p><p style="font-size:13.5px;color:var(--text-muted)">Direction → Location → Concept → Near-answer → Answer (last resort)</p></div>
+        </div>
+        <div class="card" style="border-left:3px solid #b45309;display:flex;gap:14px;align-items:flex-start">
+          <div style="background:#b45309;color:#fff;font-size:11px;font-weight:700;min-width:52px;text-align:center;padding:4px 0;border-radius:6px;flex-shrink:0">Step 5</div>
+          <div><p style="font-weight:600;margin-bottom:3px">Confirm</p><p style="font-size:13.5px;color:var(--text-muted)">"Can you explain back to me why that fixed it?"</p></div>
+        </div>
+      </div>
+
+      <div class="callout" style="background:#fef3e2;border-left:3px solid #b45309;margin-top:16px">
+        <span class="callout-icon">💡</span>
+        <span>Step 4 is a ladder, not a list — start from Direction and only move down if the student is genuinely still stuck. <strong>Answer is always the last resort.</strong></span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('c4')" style="font-size:13px">← C4: Gaming</button>
+      <button class="tab-btn active-c" onclick="showPage('c6')" style="font-size:13px">C6: After Class →</button>
+    </div>
+  </div>
+
+  <!-- ── C6 ── -->
+  <div class="page-section" id="page-c6">
+    <div class="doc-section">
+      <div class="section-header" style="border-bottom-color:#b45309">
+        <div class="section-icon" style="background:#fef3e2"><span style="font-size:18px">✅</span></div>
+        <div><div class="section-num">SECTION C · C6</div><h2>After Class Checklist</h2></div>
+      </div>
+      <div class="callout" style="background:#1a1815;border-left:3px solid #b45309;margin-bottom:20px">
+        <span class="callout-icon" style="font-size:22px">+10</span>
+        <span style="color:#f7f6f2"><strong>Stay 10 minutes after class ends.</strong> Use this time for parent feedback and room reset.</span>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-label"><span>After-class checklist</span><span id="progress-c6-text">0 / 3</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-c6-fill" style="width:0%;background:#b45309"></div></div>
+      </div>
+      <ul class="checklist" id="checklist-c6">
+        <li onclick="toggleCheck(this,'c6')"><div class="check-box"></div><div><span class="check-label" style="font-weight:600">Brief parent feedback</span><br><span style="font-size:13px;color:var(--text-muted)">2–3 sentences max; one highlight per student</span></div></li>
+        <li onclick="toggleCheck(this,'c6')"><div class="check-box"></div><div><span class="check-label" style="font-weight:600">Flag any incidents</span><br><span style="font-size:13px;color:var(--text-muted)">Escalated gaming, behavior, or parent concerns → tell lead teacher</span></div></li>
+        <li onclick="toggleCheck(this,'c6')"><div class="check-box"></div><div><span class="check-label" style="font-weight:600">Clean up & reset room</span><br><span style="font-size:13px;color:var(--text-muted)">Lights, AC, furniture back to original position</span></div></li>
+      </ul>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('c5')" style="font-size:13px">← C5: Help Framework</button>
+      <button class="tab-btn" onclick="showPage('overview')" style="font-size:13px">↩ Back to Overview</button>
+    </div>
+  </div>
 </main>
 </div>
 
@@ -1238,7 +1484,7 @@
     document.querySelectorAll('.nav-item').forEach(n => {
       n.classList.remove('active-a','active-b');
       if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) {
-        n.classList.add(id.startsWith('b') ? 'active-b' : 'active-a');
+        n.classList.add(id.startsWith('b') ? 'active-b' : id.startsWith('c') ? 'active-c' : 'active-a');
       }
     });
     window.scrollTo(0, 0);
@@ -1247,12 +1493,13 @@
   // ── Section filter ──
   function filterSection(sec) {
     // Update tab styles
-    ['all','a','b'].forEach(s => {
+    ['all','a','b','c'].forEach(s => {
       document.getElementById('tab-'+s).className = 'tab-btn';
     });
     if (sec === 'all') document.getElementById('tab-all').classList.add('active-all');
     if (sec === 'a')   document.getElementById('tab-a').classList.add('active-a');
     if (sec === 'b')   document.getElementById('tab-b').classList.add('active-b');
+    if (sec === 'c')   document.getElementById('tab-c').classList.add('active-c');
 
     // Show/hide sidebar nav items
     document.querySelectorAll('.nav-item').forEach(n => {
@@ -1260,12 +1507,15 @@
       const isOverview = onclick.includes("'overview'");
       const isA = onclick.match(/'a[1-9]/);
       const isB = onclick.match(/'b[1-9]/);
+      const isC = onclick.match(/'c[1-9]/);
       if (sec === 'all') {
         n.style.display = 'block';
       } else if (sec === 'a') {
         n.style.display = (isOverview || isA) ? 'block' : 'none';
       } else if (sec === 'b') {
         n.style.display = (isB) ? 'block' : 'none';
+      } else if (sec === 'c') {
+        n.style.display = (isC) ? 'block' : 'none';
       }
     });
 
@@ -1278,13 +1528,16 @@
         ns.style.display = (txt.includes('Overview') || txt.includes('Section A')) ? 'block' : 'none';
       } else if (sec === 'b') {
         ns.style.display = txt.includes('Section B') ? 'block' : 'none';
+      } else if (sec === 'c') {
+        ns.style.display = txt.includes('Section C') ? 'block' : 'none';
       }
     });
 
     // Navigate to correct starting page
-    if (sec === 'a')   showPage('overview');
+    if (sec === 'a')   showPage('a1');
     if (sec === 'b')   showPage('b1');
     if (sec === 'all') showPage('overview');
+    if (sec === 'c')   showPage('c1');
   }
 
   // ── Role detail toggle ──
@@ -1319,6 +1572,7 @@
   }
 
   function updateProgress(section) {
+    if (!document.getElementById('checklist-' + section)) return;
     const list = document.getElementById('checklist-' + section);
     const total = list.querySelectorAll('li').length;
     const done  = list.querySelectorAll('li.checked').length;
