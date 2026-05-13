@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-Camp TA Onboarding Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e8e4dc;
+    --text: #1a1815;
+    --text-muted: #7a746a;
+    --accent-a: #2d6a4f;
+    --accent-a-light: #e8f4ef;
+    --accent-b: #1d4e89;
+    --accent-b-light: #e8eef7;
+    --accent-warn: #b45309;
+    --accent-warn-light: #fef3e2;
+    --tag-replied: #6366f1;
+    --tag-answered: #059669;
+    --tag-resolved: #0891b2;
+    --tag-voice: #7c3aed;
+    --radius: 10px;
+    --sidebar-w: 260px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── Layout ── */
+  .layout { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: var(--sidebar-w);
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+    padding: 28px 0 40px;
+    z-index: 100;
+  }
+
+  .sidebar-logo {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .sidebar-logo .brand {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .sidebar-logo h1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  .nav-section {
+    padding: 6px 20px 2px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  .nav-item {
+    display: block;
+    padding: 7px 20px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    text-decoration: none;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all .15s;
+    line-height: 1.4;
+  }
+  .nav-item:hover { color: var(--text); background: var(--bg); }
+  .nav-item.active-a { color: var(--accent-a); border-left-color: var(--accent-a); background: var(--accent-a-light); font-weight: 500; }
+  .nav-item.active-b { color: var(--accent-b); border-left-color: var(--accent-b); background: var(--accent-b-light); font-weight: 500; }
+
+  .section-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  .badge-a { background: var(--accent-a-light); color: var(--accent-a); }
+  .badge-b { background: var(--accent-b-light); color: var(--accent-b); }
+
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    padding: 48px 56px 80px;
+    max-width: 860px;
+  }
+
+  /* ── Section switcher ── */
+  .section-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 9px 20px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .15s;
+    color: var(--text-muted);
+  }
+  .tab-btn:hover { border-color: #aaa; color: var(--text); }
+  .tab-btn.active-a { background: var(--accent-a); border-color: var(--accent-a); color: #fff; }
+  .tab-btn.active-b { background: var(--accent-b); border-color: var(--accent-b); color: #fff; }
+  .tab-btn.active-all { background: var(--text); border-color: var(--text); color: #fff; }
+
+  /* ── Page sections ── */
+  .page-section { display: none; }
+  .page-section.visible { display: block; }
+
+  /* ── Content typography ── */
+  .doc-section {
+    margin-bottom: 56px;
+    scroll-margin-top: 24px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-header.green { border-bottom-color: var(--accent-a); }
+  .section-header.blue  { border-bottom-color: var(--accent-b); }
+
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .icon-green { background: var(--accent-a-light); }
+  .icon-blue  { background: var(--accent-b-light); }
+
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .section-header .section-num {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: .06em;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 24px 0 10px;
+    color: var(--text);
+  }
+
+  p { margin-bottom: 12px; color: var(--text); }
+  p:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 600; }
+  em { font-style: italic; color: var(--text-muted); }
+
+  ul, ol { padding-left: 20px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .callout-green { background: var(--accent-a-light); border-left: 3px solid var(--accent-a); }
+  .callout-blue  { background: var(--accent-b-light); border-left: 3px solid var(--accent-b); }
+  .callout-warn  { background: var(--accent-warn-light); border-left: 3px solid var(--accent-warn); }
+  .callout-gray  { background: #f0ede8; border-left: 3px solid #bbb; }
+
+  /* ── Quote / phrase ── */
+  .phrase {
+    background: #f0ede8;
+    border-left: 3px solid #ccc;
+    border-radius: 0 6px 6px 0;
+    padding: 10px 16px;
+    margin: 10px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── Table ── */
+  .tbl-wrap { overflow-x: auto; margin: 16px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  th {
+    background: var(--bg);
+    font-weight: 600;
+    text-align: left;
+    padding: 9px 14px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg); }
+
+  /* ── Tags ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+  }
+  .tag-replied  { background: #ede9fe; color: var(--tag-replied); }
+  .tag-answered { background: #d1fae5; color: var(--tag-answered); }
+  .tag-resolved { background: #cffafe; color: var(--tag-resolved); }
+  .tag-voice    { background: #ede9fe; color: var(--tag-voice); }
+  .tag-ac  { background: #d1fae5; color: #065f46; }
+  .tag-wa  { background: #fee2e2; color: #991b1b; }
+  .tag-ce  { background: #fef3c7; color: #92400e; }
+  .tag-re  { background: #fee2e2; color: #7f1d1d; }
+  .tag-tle { background: #fce7f3; color: #9d174d; }
+  .tag-mle { background: #ede9fe; color: #4c1d95; }
+
+  /* ── Checklist ── */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: opacity .15s;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li.checked { opacity: .5; }
+  .checklist li.checked .check-label { text-decoration: line-through; }
+  .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+    background: var(--surface);
+  }
+  .checklist li.checked .check-box {
+    background: var(--accent-a);
+    border-color: var(--accent-a);
+  }
+  .checklist li.checked .check-box::after {
+    content: '✓';
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .check-label { font-size: 14px; line-height: 1.5; }
+
+  /* ── Progress bar ── */
+  .progress-wrap {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+  }
+  .progress-label span:last-child { font-weight: 600; color: var(--text); }
+  .progress-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent-a);
+    border-radius: 99px;
+    transition: width .3s ease;
+  }
+
+  /* ── Case study ── */
+  .case-study {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .case-header {
+    background: var(--bg);
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .case-header:hover { background: #eeeae2; }
+  .case-num {
+    background: var(--text);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .case-chevron { margin-left: auto; font-size: 12px; transition: transform .2s; }
+  .case-study.open .case-chevron { transform: rotate(180deg); }
+  .case-body { display: none; padding: 18px; }
+  .case-study.open .case-body { display: block; }
+  .mistake-box {
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13.5px;
+  }
+  .mistake-box .label { font-weight: 600; color: #dc2626; font-size: 12px; margin-bottom: 4px; }
+  .todo-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13.5px;
+  }
+  .todo-box .label { font-weight: 600; color: #16a34a; font-size: 12px; margin-bottom: 4px; }
+  .todo-box ol { margin: 0; padding-left: 18px; }
+  .todo-box li { margin-bottom: 6px; }
+
+  /* ── Session type cards ── */
+  .session-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .session-card {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    cursor: pointer;
+    transition: all .15s;
+    background: var(--surface);
+  }
+  .session-card:hover { border-color: var(--accent-b); box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .session-card.selected { border-color: var(--accent-b); background: var(--accent-b-light); }
+  .session-card .s-icon { font-size: 22px; margin-bottom: 8px; }
+  .session-card .s-name { font-weight: 600; font-size: 14px; }
+  .session-card .s-dur  { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  .session-detail { display: none; }
+  .session-detail.visible { display: block; }
+
+  .flow-table { margin: 12px 0; }
+  .flow-row {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    align-items: flex-start;
+  }
+  .flow-row:last-child { border-bottom: none; }
+  .flow-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent-b);
+    font-weight: 500;
+    min-width: 60px;
+    padding-top: 2px;
+  }
+
+  /* ── Role pills ── */
+  .role-grid { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+  .role-pill {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .15s;
+    background: var(--surface);
+  }
+  .role-pill:hover { border-color: #999; }
+  .role-pill.active-green { background: var(--accent-a); border-color: var(--accent-a); color: #fff; }
+  .role-pill.active-blue  { background: var(--accent-b); border-color: var(--accent-b); color: #fff; }
+
+  /* ── Overview hero ── */
+  .hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px 36px;
+    margin-bottom: 40px;
+  }
+  .hero h1 { font-size: 26px; font-weight: 600; margin-bottom: 8px; }
+  .hero .subtitle { color: var(--text-muted); font-size: 15px; margin-bottom: 24px; }
+  .prereq {
+    background: var(--accent-warn-light);
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    margin-bottom: 16px;
+  }
+  .assignment-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .assignment-card {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+    background: var(--surface);
+  }
+  .assignment-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+  .assignment-card .a-icon { font-size: 24px; margin-bottom: 8px; }
+  .assignment-card .a-title { font-weight: 600; font-size: 14px; }
+  .assignment-card .a-sub { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+  .assignment-card.green { border-color: var(--accent-a); background: var(--accent-a-light); }
+  .assignment-card.blue  { border-color: var(--accent-b); background: var(--accent-b-light); }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 24px 20px 60px; }
+    .session-grid { grid-template-columns: 1fr; }
+    .assignment-cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<!-- ── Sidebar ── -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">X-Camp Academy</div>
+    <h1>TA Onboarding Guide</h1>
+  </div>
+
+  <div class="nav-section">Overview</div>
+  <a class="nav-item" onclick="showPage('overview')">🌐 Support System</a>
+
+  <div class="nav-section">Section A — HWN</div>
+  <a class="nav-item" onclick="showPage('a1')"><span class="section-badge badge-a">A1</span> Your Goal</a>
+  <a class="nav-item" onclick="showPage('a2')"><span class="section-badge badge-a">A2</span> Roles in HWN</a>
+  <a class="nav-item" onclick="showPage('a3')"><span class="section-badge badge-a">A3</span> Judge Verdicts</a>
+  <a class="nav-item" onclick="showPage('a4')"><span class="section-badge badge-a">A4</span> Handling Questions</a>
+  <a class="nav-item" onclick="showPage('a5')"><span class="section-badge badge-a">A5</span> Phrases & Cases</a>
+  <a class="nav-item" onclick="showPage('a6')"><span class="section-badge badge-a">A6</span> First Shift Checklist</a>
+
+  <div class="nav-section">Section B — 1 on 1 OH</div>
+  <a class="nav-item" onclick="showPage('b1')"><span class="section-badge badge-b">B1</span> Your Goal</a>
+  <a class="nav-item" onclick="showPage('b2')"><span class="section-badge badge-b">B2</span> Setup</a>
+  <a class="nav-item" onclick="showPage('b3')"><span class="section-badge badge-b">B3</span> Running Sessions</a>
+  <a class="nav-item" onclick="showPage('b4')"><span class="section-badge badge-b">B4</span> Case Studies</a>
+  <a class="nav-item" onclick="showPage('b5')"><span class="section-badge badge-b">B5</span> First Session Checklist</a>
+</nav>
+
+<!-- ── Main ── -->
+<main class="main">
+
+  <!-- Section tabs -->
+  <div class="section-tabs">
+    <button class="tab-btn" onclick="filterSection('all')" id="tab-all">📚 All Sections</button>
+    <button class="tab-btn" onclick="filterSection('a')" id="tab-a">🌙 Section A — HWN</button>
+    <button class="tab-btn" onclick="filterSection('b')" id="tab-b">🗓 Section B — 1 on 1 OH</button>
+  </div>
+
+  <!-- ── OVERVIEW ── -->
+  <div class="page-section visible" id="page-overview">
+    <div class="hero">
+      <h1>📚 X-Camp TA Onboarding Guide</h1>
+      <p class="subtitle">Pick up from the platform walkthrough and learn how to do your job well.</p>
+      <div class="prereq">
+        ✅ <strong>Prerequisite:</strong> You have completed the platform walkthrough. This guide picks up from there.
+      </div>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:12px;">Jump directly to the section that matches your assignment:</p>
+      <div class="assignment-cards">
+        <div class="assignment-card green" onclick="filterSection('a'); showPage('a1')">
+          <div class="a-icon">🌙</div>
+          <div class="a-title">Section A</div>
+          <div class="a-sub">Assigned to HWN</div>
+        </div>
+        <div class="assignment-card blue" onclick="filterSection('b'); showPage('b1')">
+          <div class="a-icon">🗓</div>
+          <div class="a-title">Section B</div>
+          <div class="a-sub">Assigned to 1 on 1 OH</div>
+        </div>
+        <div class="assignment-card" onclick="filterSection('all'); showPage('a1')" style="border-color:#888">
+          <div class="a-icon">📖</div>
+          <div class="a-title">Both Sections</div>
+          <div class="a-sub">Assigned to both</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-icon"><span style="font-size:20px">🌐</span></div>
+        <div><div class="section-num">OVERVIEW</div><h2>The X-Camp Student Support System</h2></div>
+      </div>
+      <p>When students get stuck on homework, they have two ways to get help.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;">
+        <div class="card" style="border-left:3px solid var(--accent-a)">
+          <p style="font-size:18px;margin-bottom:6px">🌙</p>
+          <p><strong>Homework Night (HWN)</strong></p>
+          <p style="font-size:13.5px;color:var(--text-muted);margin-top:4px">Every day, 5:00–8:00 PM PT. Students post on Discourse and ask questions by voice in Zoom. Multiple TAs handle volume in real time. Fast-paced, requires coordination.</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--accent-b)">
+          <p style="font-size:18px;margin-bottom:6px">🗓</p>
+          <p><strong>1 on 1 Office Hours</strong></p>
+          <p style="font-size:13.5px;color:var(--text-muted);margin-top:4px">Students book individual sessions in advance — Conceptual, Debugging, Code Review, or Catch-up. Slower-paced, deeper focus, requires TA preparation.</p>
+        </div>
+      </div>
+      <p>The two channels complement each other — HWN handles most common questions, and 1 on 1 OH handles situations that need deeper, focused work.</p>
+      <div class="callout callout-green">
+        <span class="callout-icon">💡</span>
+        <span>As a TA, your core responsibility is not to give answers. It is to <strong>help students find their own path to solving the problem.</strong></span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:8px">
+      <button class="tab-btn active-a" onclick="filterSection('a');showPage('a1')" style="font-size:13px">Start Section A →</button>
+    </div>
+  </div>
+
+  <!-- ── A1 ── -->
+  <div class="page-section" id="page-a1">
+    <div class="doc-section">
+      <div class="section-header green">
+        <div class="section-icon icon-green"><span style="font-size:18px">🎯</span></div>
+        <div><div class="section-num">SECTION A · A1</div><h2>Your Goal</h2></div>
+      </div>
+      <p>The goal of HWN is not to answer every question completely. It is to make sure <strong>every student who comes for help leaves with a clear next step.</strong></p>
+      <div class="card" style="margin:16px 0">
+        <p style="margin-bottom:10px;font-weight:600;font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">That means</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="font-size:16px">🔍</span><span>A student with a <strong>WA</strong> knows exactly which part of their logic to re-examine</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="font-size:16px">💡</span><span>A student with <strong>no idea</strong> at all has one concrete direction to try</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="font-size:16px">🔀</span><span>A student <strong>out of your coverage</strong> has been handed off cleanly to the right TA</span></div>
+        </div>
+      </div>
+      <p>You do not need to fully resolve every problem. Guiding students to the right direction and handing off cleanly is doing your job well.</p>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('overview')" style="font-size:13px">← Overview</button>
+      <button class="tab-btn active-a" onclick="showPage('a2')" style="font-size:13px">A2: Roles →</button>
+    </div>
+  </div>
+
+  <!-- ── A2 ── -->
+  <div class="page-section" id="page-a2">
+    <div class="doc-section">
+      <div class="section-header green">
+        <div class="section-icon icon-green"><span style="font-size:18px">👥</span></div>
+        <div><div class="section-num">SECTION A · A2</div><h2>Roles in HWN</h2></div>
+      </div>
+      <p>Each HWN shift has three roles. You will be assigned to one of them. Click a role to see its responsibilities.</p>
+
+      <div class="role-grid" style="margin:20px 0 16px">
+        <div class="role-pill" id="role-zoom" onclick="showRole('zoom')">🎙 Zoom Teacher (Host)</div>
+        <div class="role-pill" id="role-disc" onclick="showRole('disc')">💬 Discourse Teacher (Co-Host)</div>
+        <div class="role-pill" id="role-mgr"  onclick="showRole('mgr')">⚙️ Manager</div>
+      </div>
+
+      <div id="role-detail-zoom" class="card" style="display:none;border-left:3px solid var(--accent-a)">
+        <p style="font-weight:600;margin-bottom:10px">🎙 Zoom Teacher — you coordinate the entire room</p>
+        <ul>
+          <li>Claim Host as soon as you enter Zoom (Host Key is in the HWN Guidebook)</li>
+          <li>Enable <em>"Play sound when someone joins or leaves"</em> under Manage Participants</li>
+          <li>Dispatch questions in order of arrival:
+            <ul style="margin-top:6px">
+              <li>Can handle it → reply <strong>"Looking"</strong> and address directly by voice or Discourse</li>
+              <li>Level mismatch → <strong>@ the correct Discourse TA</strong></li>
+              <li>No coverage → <strong>"Your post will be replied within 24 hours"</strong></li>
+            </ul>
+          </li>
+          <li>Keep Discourse post tags up to date</li>
+        </ul>
+        <div class="callout callout-warn" style="margin-top:14px">
+          <span class="callout-icon">⚠️</span>
+          <span>When a student posts a Zoom chat message with their Discourse link, always go to the <strong>Discourse post</strong> to handle it — don't just respond in Zoom chat.</span>
+        </div>
+      </div>
+
+      <div id="role-detail-disc" class="card" style="display:none;border-left:3px solid var(--accent-b)">
+        <p style="font-weight:600;margin-bottom:10px">💬 Discourse Teacher — you focus on written Q&A</p>
+        <ul style="margin-bottom:16px">
+          <li>Prioritize questions the Zoom Teacher <strong>@ tags you on</strong> — reply "Looking" in Zoom and take over</li>
+          <li>Then check new Discourse notifications</li>
+          <li>Then answer posts in chronological order</li>
+          <li>Update the post tag after every reply</li>
+        </ul>
+        <p style="font-weight:600;font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">Tag Definitions</p>
+        <table>
+          <thead><tr><th>Tag</th><th>Meaning</th><th>When to use</th></tr></thead>
+          <tbody>
+            <tr><td><span class="tag tag-replied">Replied</span></td><td>Directional guidance given, conversation ongoing</td><td>Waiting for student's response</td></tr>
+            <tr><td><span class="tag tag-answered">Answered</span></td><td>Detailed help or near-complete solution given</td><td>Student's issue is substantially addressed</td></tr>
+            <tr><td><span class="tag tag-resolved">Resolved</span></td><td>Student got AC</td><td>Student confirmed they passed</td></tr>
+            <tr><td><span class="tag tag-voice">Answered by voice</span></td><td>Solved directly by voice in Zoom</td><td>Explained verbally, no written reply needed</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="role-detail-mgr" class="card" style="display:none;border-left:3px solid #ccc">
+        <p style="font-weight:600;margin-bottom:6px">⚙️ Manager</p>
+        <p style="font-size:13.5px">Handles Discourse permissions and backend configuration. This is not typically a new TA role and is not covered here.</p>
+      </div>
+
+      <h3 style="margin-top:28px">📊 Level Coverage by Role</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Role</th><th>Typical coverage</th></tr></thead>
+          <tbody>
+            <tr><td>🎙 Zoom (Voice) Teacher</td><td>Python: 100, 101, 102, 200</td></tr>
+            <tr><td>💬 Discourse (Text) Teacher</td><td>C++: 201, 202, 300, 301, 302</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:28px">📅 HWN Schedule — Spring 2026</h3>
+      <div class="callout callout-gray">
+        <span class="callout-icon">📌</span>
+        <span>This schedule is for <strong>Spring 2026</strong> and is updated each quarter. If you are onboarding in a later quarter, check with your Program Manager for the current schedule.</span>
+      </div>
+      <div class="card" style="text-align:center;padding:28px;color:var(--text-muted);font-size:13.5px">
+        🖼 <em>Insert schedule screenshot here</em>
+      </div>
+      <div class="callout callout-gray" style="margin-top:8px">
+        <span class="callout-icon">📌</span>
+        <span><strong>In-person / Summer Camp:</strong> Students may walk up and ask questions directly. The same tagging and record-keeping still applies — update Discourse post status after answering in person.</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('a1')" style="font-size:13px">← A1: Goal</button>
+      <button class="tab-btn active-a" onclick="showPage('a3')" style="font-size:13px">A3: Judge Verdicts →</button>
+    </div>
+  </div>
+
+  <!-- ── A3 ── -->
+  <div class="page-section" id="page-a3">
+    <div class="doc-section">
+      <div class="section-header green">
+        <div class="section-icon icon-green"><span style="font-size:18px">🖥</span></div>
+        <div><div class="section-num">SECTION A · A3</div><h2>Judge Verdicts — Quick Reference</h2></div>
+      </div>
+      <p>When students submit code to the online judge, they get one of these verdicts. You'll see these terms constantly in HWN.</p>
+      <div class="tbl-wrap" style="margin-top:16px">
+        <table>
+          <thead><tr><th>Verdict</th><th>Full name</th><th>What it means</th></tr></thead>
+          <tbody>
+            <tr><td><span class="tag tag-ac">AC</span></td><td>Accepted</td><td>Code is correct and passed all test cases</td></tr>
+            <tr><td><span class="tag tag-wa">WA</span></td><td>Wrong Answer</td><td>Code runs but produces incorrect output on at least one test case</td></tr>
+            <tr><td><span class="tag tag-ce">CE</span></td><td>Compile Error</td><td>Code has syntax errors and couldn't be compiled</td></tr>
+            <tr><td><span class="tag tag-re">RE</span></td><td>Runtime Error</td><td>Code compiled but crashed during execution (e.g. index out of bounds, stack overflow)</td></tr>
+            <tr><td><span class="tag tag-tle">TLE</span></td><td>Time Limit Exceeded</td><td>Code is too slow and didn't finish within the allowed time</td></tr>
+            <tr><td><span class="tag tag-mle">MLE</span></td><td>Memory Limit Exceeded</td><td>Code used more memory than allowed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('a2')" style="font-size:13px">← A2: Roles</button>
+      <button class="tab-btn active-a" onclick="showPage('a4')" style="font-size:13px">A4: Handling Questions →</button>
+    </div>
+  </div>
+
+  <!-- ── A4 ── -->
+  <div class="page-section" id="page-a4">
+    <div class="doc-section">
+      <div class="section-header green">
+        <div class="section-icon icon-green"><span style="font-size:18px">❓</span></div>
+        <div><div class="section-num">SECTION A · A4</div><h2>How to Handle a Question</h2></div>
+      </div>
+
+      <h3>Step 1 — Identify the question type</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>What it looks like</th><th>Your first move</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Don't understand</strong></td><td>Can't follow the problem statement</td><td>"What specifically don't you understand — the description, or the sample data?"</td></tr>
+            <tr><td><strong>No idea</strong></td><td>No approach at all</td><td>"How long have you been thinking about it?"</td></tr>
+            <tr><td><strong>Implementation</strong></td><td>Has a plan but can't write it</td><td>"What have you tried? Where exactly are you stuck?"</td></tr>
+            <tr><td><span class="tag tag-ce">CE</span></td><td>Compile error</td><td>"Have you looked at the compiler's error message?"</td></tr>
+            <tr><td><span class="tag tag-wa">WA</span></td><td>Wrong answer</td><td>"Have you found the test case where your output is wrong?"</td></tr>
+            <tr><td><span class="tag tag-re">RE</span></td><td>Runtime error</td><td>"Do you know where in the code the program crashes?"</td></tr>
+            <tr><td><span class="tag tag-tle">TLE</span></td><td>Time limit exceeded</td><td>"What algorithm are you currently using?"</td></tr>
+            <tr><td><span class="tag tag-mle">MLE</span></td><td>Memory limit exceeded</td><td>"What data structure are you using to store the data?"</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout-green" style="margin-top:12px">
+        <span class="callout-icon">💡</span>
+        <span><strong>Core principle: ask first, guide second, give direction last.</strong> Jumping straight to giving the answer takes away the student's chance to figure it out themselves — and they'll be stuck again next time.</span>
+      </div>
+
+      <h3>Step 2 — Use rounds when multiple students are waiting</h3>
+      <div class="card">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="background:var(--accent-a);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;margin-top:2px">Round 1</div>
+            <span>Give every student a quick reply ("Looking" + brief directional nudge)</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="background:var(--accent-a);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;margin-top:2px">Round 2</div>
+            <span>Return to each student based on their progress, give more detailed guidance</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="background:var(--accent-a);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;margin-top:2px">Round 3+</div>
+            <span>Continue following up on complex problems</span>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:12px;margin-bottom:0">This way, no student is left waiting in silence for a long time.</p>
+      </div>
+
+      <h3>Step 3 — Decide whether to hand off</h3>
+      <p>If a question is clearly outside your level coverage, don't force it. @ the correct Discourse TA and let the student know in Zoom chat that the right TA is looking at their post.</p>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('a3')" style="font-size:13px">← A3: Verdicts</button>
+      <button class="tab-btn active-a" onclick="showPage('a5')" style="font-size:13px">A5: Phrases & Cases →</button>
+    </div>
+  </div>
+
+  <!-- ── A5 ── -->
+  <div class="page-section" id="page-a5">
+    <div class="doc-section">
+      <div class="section-header green">
+        <div class="section-icon icon-green"><span style="font-size:18px">💬</span></div>
+        <div><div class="section-num">SECTION A · A5</div><h2>Language Reference & Case Studies</h2></div>
+      </div>
+
+      <h3>Useful Phrases</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:12px">Copy these directly or adapt them to your style.</p>
+
+      <div style="margin-bottom:8px"><strong style="font-size:13px">When a student's code is too complex to follow:</strong></div>
+      <div class="phrase">"There are many ways to solve this and I didn't use the same approach. It would really help if you could write out your solution plan in English first — what is each part of your code trying to do?"</div>
+
+      <div style="margin:16px 0 8px"><strong style="font-size:13px">When a student says they have no idea:</strong></div>
+      <p style="font-size:13.5px">Ask how long they've been thinking about it first. Then give the smallest useful nudge based on the problem type (e.g. <em>"This is a tree problem — start by thinking about how to build the tree"</em>), not the full solution.</p>
+
+      <div style="margin:16px 0 8px"><strong style="font-size:13px">When you can't cover the question right now:</strong></div>
+      <div class="phrase">"Your post will be replied within 24 hours. You're welcome to stay for self-study, or come back tomorrow."</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-top:6px">Don't pretend to be handling it and give a vague direction. Being honest is better than a misleading answer.</p>
+
+      <h3 style="margin-top:28px">Case Studies</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Click a case to expand it.</p>
+
+      <div class="case-study" id="case-a1">
+        <div class="case-header" onclick="toggleCase('case-a1')">
+          <div class="case-num">1</div>
+          <span>The student posted code but you can't follow their logic</span>
+          <span class="case-chevron">▼</span>
+        </div>
+        <div class="case-body">
+          <p style="font-size:13.5px">Amy posted a 200-level DP problem on Discourse. She pasted 60 lines of code with no comments and said "my code is WA."</p>
+          <div class="mistake-box"><div class="label">❌ Common mistake</div>You spend 10 minutes trying to read through her code, then give a hint based on your own solution approach — which has nothing to do with what she wrote. Amy gets more confused.</div>
+          <div class="todo-box"><div class="label">✅ What to do</div><ol><li>Reply "Looking" and change the tag to <span class="tag tag-replied">Replied</span></li><li>Send: "There are many ways to solve this. Could you write out your solution logic in English first? What is each section of your code trying to do?"</li><li>Once she explains her approach, you can see exactly where her thinking went wrong and guide her from there.</li></ol></div>
+        </div>
+      </div>
+
+      <div class="case-study" id="case-a2">
+        <div class="case-header" onclick="toggleCase('case-a2')">
+          <div class="case-num">2</div>
+          <span>Zoom Teacher and Discourse Teacher both pick up the same question</span>
+          <span class="case-chevron">▼</span>
+        </div>
+        <div class="case-body">
+          <p style="font-size:13.5px">Ben sends his Discourse link in Zoom chat. At the same time, the Discourse TA sees the new notification and starts looking at it too.</p>
+          <div class="mistake-box"><div class="label">❌ Common mistake</div>Both TAs respond with different directions. Ben doesn't know which one to follow.</div>
+          <div class="todo-box"><div class="label">✅ What to do</div><ol><li>Zoom Teacher sees Ben is 200-level, outside their coverage, and @ the Discourse TA</li><li>Discourse TA replies "Looking" in Zoom and takes over</li><li>Zoom Teacher tells Ben: "Our 200-level TA is looking at your post now"</li></ol><p style="margin-top:8px;font-size:13px">Only one TA handles any given question at a time.</p></div>
+        </div>
+      </div>
+
+      <div class="case-study" id="case-a3">
+        <div class="case-header" onclick="toggleCase('case-a3')">
+          <div class="case-num">3</div>
+          <span>The question is clearly above your level coverage</span>
+          <span class="case-chevron">▼</span>
+        </div>
+        <div class="case-body">
+          <p style="font-size:13.5px">Carol is a 201-level student, but the problem she's asking about is clearly 300-level material.</p>
+          <div class="mistake-box"><div class="label">❌ Common mistake</div>You try to answer anyway, give an inaccurate hint, and Carol spends an hour going in the wrong direction.</div>
+          <div class="todo-box"><div class="label">✅ What to do</div><ol><li>Don't attempt an answer you're not confident in</li><li>Tell Carol: "This problem looks like it's from the 300-level curriculum. I'll flag it for our team — someone will follow up within 24 hours."</li><li>Let the other TAs or Manager know in the group so the right person can follow up</li></ol></div>
+        </div>
+      </div>
+
+      <div class="case-study" id="case-a4">
+        <div class="case-header" onclick="toggleCase('case-a4')">
+          <div class="case-num">4</div>
+          <span>A student keeps asking follow-ups without trying anything</span>
+          <span class="case-chevron">▼</span>
+        </div>
+        <div class="case-body">
+          <p style="font-size:13.5px">David asks a question. You give him a nudge. He immediately asks "so what do I do next?" — without having tried anything.</p>
+          <div class="mistake-box"><div class="label">❌ Common mistake</div>You keep answering, and by the end you've essentially walked him through the entire solution.</div>
+          <div class="todo-box"><div class="label">✅ What to do</div><ol><li>After the second follow-up without any attempt, pause: "Before I continue — what have you tried based on what I just said?"</li><li>If he hasn't tried anything: "Go ahead and try implementing that part first. Come back if you're still stuck — I'll be here."</li><li>Don't let student impatience push you into skipping the guided learning process.</li></ol></div>
+        </div>
+      </div>
+
+      <div class="case-study" id="case-a5">
+        <div class="case-header" onclick="toggleCase('case-a5')">
+          <div class="case-num">5</div>
+          <span>You're the only TA on shift with too many questions</span>
+          <span class="case-chevron">▼</span>
+        </div>
+        <div class="case-body">
+          <p style="font-size:13.5px">One Wednesday evening, another TA is absent and you're handling 8 students alone.</p>
+          <div class="todo-box"><div class="label">✅ What to do</div><ol><li>Don't try to fully resolve any one question first — use rounds, give every student a quick "Looking" + one-line nudge</li><li>For deeper debugging: "This will take more time — I'll come back to you after checking in with everyone."</li><li>For questions you can't cover: "Your post will be replied within 24 hours." Leave a note in the TA group.</li><li>After the shift, flag to the Manager that coverage was thin.</li></ol></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('a4')" style="font-size:13px">← A4: Questions</button>
+      <button class="tab-btn active-a" onclick="showPage('a6')" style="font-size:13px">A6: Checklist →</button>
+    </div>
+  </div>
+
+  <!-- ── A6 ── -->
+  <div class="page-section" id="page-a6">
+    <div class="doc-section">
+      <div class="section-header green">
+        <div class="section-icon icon-green"><span style="font-size:18px">✅</span></div>
+        <div><div class="section-num">SECTION A · A6</div><h2>Before Your First Shift — Checklist</h2></div>
+      </div>
+      <p style="margin-bottom:16px">Complete everything below before your first independent HWN shift.</p>
+
+      <div id="progress-a" class="progress-wrap">
+        <div class="progress-label"><span>Progress</span><span id="progress-a-text">0 / 9</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-a-fill" style="width:0%"></div></div>
+      </div>
+
+      <ul class="checklist" id="checklist-a">
+        <li onclick="toggleCheck(this,'a')"><div class="check-box"></div><span class="check-label">Successfully logged into Discourse and able to reply to posts</span></li>
+        <li onclick="toggleCheck(this,'a')"><div class="check-box"></div><span class="check-label">Your level categories are pinned in Discourse sidebar</span></li>
+        <li onclick="toggleCheck(this,'a')"><div class="check-box"></div><span class="check-label">You can use the Kanban Board and understand all four tag states</span></li>
+        <li onclick="toggleCheck(this,'a')"><div class="check-box"></div><span class="check-label">You know where to find hint videos and solution videos</span></li>
+        <li onclick="toggleCheck(this,'a')"><div class="check-box"></div><span class="check-label">You know where to find previously accepted code on the management platform</span></li>
+        <li onclick="toggleCheck(this,'a')"><div class="check-box"></div><span class="check-label">You have logged into the HWN Zoom room and know how to Claim Host (if you are Zoom Teacher)</span></li>
+        <li onclick="toggleCheck(this,'a')"><div class="check-box"></div><span class="check-label">You know how to read the code submission records</span></li>
+        <li onclick="toggleCheck(this,'a')"><div class="check-box"></div><span class="check-label">You have observed at least one complete HWN shift with an experienced TA</span></li>
+        <li onclick="toggleCheck(this,'a')"><div class="check-box"></div><span class="check-label">You know who to contact when you encounter a question outside your coverage</span></li>
+      </ul>
+
+      <div class="callout callout-green" style="margin-top:16px">
+        <span class="callout-icon">📌</span>
+        <span><strong>Shadow shift:</strong> Before your first independent shift, sit in on a full HWN session with an experienced TA. Watch how questions are dispatched, posts are managed, and edge cases handled. Save your questions for the TA group chat afterward.</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('a5')" style="font-size:13px">← A5: Cases</button>
+      <button class="tab-btn active-b" onclick="filterSection('b');showPage('b1')" style="font-size:13px">Start Section B →</button>
+    </div>
+  </div>
+
+  <!-- ── B1 ── -->
+  <div class="page-section" id="page-b1">
+    <div class="doc-section">
+      <div class="section-header blue">
+        <div class="section-icon icon-blue"><span style="font-size:18px">🎯</span></div>
+        <div><div class="section-num">SECTION B · B1</div><h2>Your Goal</h2></div>
+      </div>
+      <p>1 on 1 OH is a scheduled, one-on-one session between you and a single student. Unlike HWN where you're managing multiple students at once, here you have the student's full attention — and they have yours.</p>
+      <p>That higher level of focus comes with a higher standard. Students book a session because they're stuck on something specific. Your job is to make sure they leave with <strong>a real understanding of what was wrong and how to think about it next time</strong> — not just a fixed piece of code.</p>
+
+      <h3>The four session types</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Session type</th><th>Duration</th><th>What the student needs</th></tr></thead>
+          <tbody>
+            <tr><td>💡 Conceptual Session</td><td>25 min</td><td>Help understanding the approach or algorithm</td></tr>
+            <tr><td>🐛 Debugging Session</td><td>15 min</td><td>Help finding and fixing a specific bug</td></tr>
+            <tr><td>🔍 Code Review</td><td>20 min</td><td>Feedback on accepted code — style, efficiency, edge cases</td></tr>
+            <tr><td>📅 Catch-up Session</td><td>30 min</td><td>Help getting back on track after falling behind</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout-blue" style="margin-top:12px">
+        <span class="callout-icon">📌</span>
+        <span><strong>400-level and Candidate Master TAs:</strong> The session types and how you run them are the same. The Zoom setup has minor differences — see the note in B2.</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="filterSection('a');showPage('a6')" style="font-size:13px">← Section A</button>
+      <button class="tab-btn active-b" onclick="showPage('b2')" style="font-size:13px">B2: Setup →</button>
+    </div>
+  </div>
+
+  <!-- ── B2 ── -->
+  <div class="page-section" id="page-b2">
+    <div class="doc-section">
+      <div class="section-header blue">
+        <div class="section-icon icon-blue"><span style="font-size:18px">⚙️</span></div>
+        <div><div class="section-num">SECTION B · B2</div><h2>Setup</h2></div>
+      </div>
+      <p>Complete the 8-step Zoom setup before your first student session. It covers accepting your Zoom Business+ seat, creating your four booking pages, adding questionnaires, and testing with your Program Manager. The setup takes 2–3 days end to end.</p>
+      <div class="card" style="margin:20px 0;border-left:3px solid var(--accent-b);display:flex;align-items:center;gap:14px">
+        <span style="font-size:28px">📋</span>
+        <div>
+          <p style="font-weight:600;margin-bottom:3px">Full setup guide</p>
+          <a href="https://stacy-q.github.io/xcamp-1on1-ta-onboarding/ta_sop_only.html" target="_blank" style="color:var(--accent-b);font-size:13.5px;text-decoration:none">1 on 1 OH: TA Zoom Setup Guide →</a>
+        </div>
+      </div>
+      <div class="callout callout-blue">
+        <span class="callout-icon">📌</span>
+        <span><strong>400-level and Candidate Master TAs:</strong> Follow the same setup guide. When you reach Step 3 (Add questionnaires), update the class level options to match your assigned levels. Everything else applies as written.</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('b1')" style="font-size:13px">← B1: Goal</button>
+      <button class="tab-btn active-b" onclick="showPage('b3')" style="font-size:13px">B3: Running Sessions →</button>
+    </div>
+  </div>
+
+  <!-- ── B3 ── -->
+  <div class="page-section" id="page-b3">
+    <div class="doc-section">
+      <div class="section-header blue">
+        <div class="section-icon icon-blue"><span style="font-size:18px">▶️</span></div>
+        <div><div class="section-num">SECTION B · B3</div><h2>How to Run Each Session Type</h2></div>
+      </div>
+      <p>Each session type has a different shape. Click a session type to see its flow and guidance.</p>
+      <div class="callout callout-blue" style="margin:16px 0">
+        <span class="callout-icon">💡</span>
+        <span><strong>Shared principle across all four:</strong> your job is to help the student understand, not to solve the problem for them. A session where the student does most of the talking is usually a better session than one where you do.</span>
+      </div>
+
+      <div class="session-grid">
+        <div class="session-card" id="sc-conceptual" onclick="showSession('conceptual')">
+          <div class="s-icon">💡</div>
+          <div class="s-name">Conceptual Session</div>
+          <div class="s-dur">25 minutes</div>
+        </div>
+        <div class="session-card" id="sc-debugging" onclick="showSession('debugging')">
+          <div class="s-icon">🐛</div>
+          <div class="s-name">Debugging Session</div>
+          <div class="s-dur">15 minutes</div>
+        </div>
+        <div class="session-card" id="sc-review" onclick="showSession('review')">
+          <div class="s-icon">🔍</div>
+          <div class="s-name">Code Review</div>
+          <div class="s-dur">20 minutes</div>
+        </div>
+        <div class="session-card" id="sc-catchup" onclick="showSession('catchup')">
+          <div class="s-icon">📅</div>
+          <div class="s-name">Catch-up Session</div>
+          <div class="s-dur">30 minutes</div>
+        </div>
+      </div>
+
+      <!-- Conceptual -->
+      <div class="session-detail card" id="sd-conceptual" style="border-left:3px solid var(--accent-b)">
+        <p style="font-weight:600;margin-bottom:4px">💡 Conceptual Session — 25 min</p>
+        <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:14px">The student doesn't understand the approach. Help them arrive at the right mental model themselves.</p>
+        <p style="font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:8px">Suggested Flow</p>
+        <div class="flow-table">
+          <div class="flow-row"><span class="flow-time">0–3 min</span><span>Ask the student to explain what they understand so far in their own words</span></div>
+          <div class="flow-row"><span class="flow-time">3–10 min</span><span>Identify the exact gap — is it the concept itself, or how to apply it to this problem?</span></div>
+          <div class="flow-row"><span class="flow-time">10–20 min</span><span>Guide them toward the insight using questions, not explanations</span></div>
+          <div class="flow-row"><span class="flow-time">20–25 min</span><span>Have them summarize the approach back to you; confirm their next step</span></div>
+        </div>
+        <p style="font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin:14px 0 8px">Useful Questions</p>
+        <ul style="font-size:13.5px">
+          <li>"What does the problem actually ask you to do — can you say it in one sentence?"</li>
+          <li>"Have you seen a simpler version of this problem before?"</li>
+          <li>"If you solved this by hand for the sample input, what would you do step by step?"</li>
+          <li>"What's the smallest subproblem you'd need to solve first?"</li>
+        </ul>
+        <div class="callout callout-warn" style="margin-top:14px">
+          <span class="callout-icon">⚠️</span>
+          <span><strong>What to avoid:</strong> Explaining the algorithm directly in the first 10 minutes. If you explain before the student has had a chance to think, they'll follow along in the moment but won't retain it.</span>
+        </div>
+      </div>
+
+      <!-- Debugging -->
+      <div class="session-detail card" id="sd-debugging" style="border-left:3px solid var(--accent-b)">
+        <p style="font-weight:600;margin-bottom:4px">🐛 Debugging Session — 15 min</p>
+        <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:14px">The student has code that isn't working. Help them find and understand the bug — don't just identify it for them.</p>
+        <p style="font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:8px">Suggested Flow</p>
+        <div class="flow-table">
+          <div class="flow-row"><span class="flow-time">0–2 min</span><span>Ask the student to describe the bug and show you the failing case</span></div>
+          <div class="flow-row"><span class="flow-time">2–8 min</span><span>Reproduce the error together — read the code, trace through the logic</span></div>
+          <div class="flow-row"><span class="flow-time">8–13 min</span><span>Guide them to the bug using questions; let them make the fix</span></div>
+          <div class="flow-row"><span class="flow-time">13–15 min</span><span>Confirm the fix works; ask why the original code was wrong</span></div>
+        </div>
+        <p style="font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin:14px 0 8px">Useful Questions</p>
+        <ul style="font-size:13.5px">
+          <li>"Can you walk me through what your code does, line by line, for this input?"</li>
+          <li>"At which line do you think the value becomes wrong?"</li>
+          <li>"What did you expect this variable to be at this point? What is it actually?"</li>
+          <li>"If you comment out this section, does the error change?"</li>
+        </ul>
+        <div class="callout callout-warn" style="margin-top:14px">
+          <span class="callout-icon">⚠️</span>
+          <span><strong>What to avoid:</strong> Reading through their code silently and then telling them what's wrong. The student needs to be the one tracing through the logic.</span>
+        </div>
+      </div>
+
+      <!-- Code Review -->
+      <div class="session-detail card" id="sd-review" style="border-left:3px solid var(--accent-b)">
+        <p style="font-weight:600;margin-bottom:4px">🔍 Code Review — 20 min</p>
+        <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:14px">The student's code is accepted. Give specific, actionable feedback on the dimensions they asked about.</p>
+        <p style="font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:8px">Suggested Flow</p>
+        <div class="flow-table">
+          <div class="flow-row"><span class="flow-time">0–3 min</span><span>Ask what specific feedback they want — don't assume based on the booking form</span></div>
+          <div class="flow-row"><span class="flow-time">3–15 min</span><span>Review the code together against their stated goals</span></div>
+          <div class="flow-row"><span class="flow-time">15–20 min</span><span>Summarize 2–3 concrete takeaways they can apply going forward</span></div>
+        </div>
+        <p style="font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin:14px 0 8px">Things Worth Commenting On</p>
+        <ul style="font-size:13.5px">
+          <li>Time and space complexity — is there a more efficient approach?</li>
+          <li>Edge cases — empty input, single elements, integer overflow?</li>
+          <li>Readability — are variable names clear? Is the logic easy to follow?</li>
+          <li>Structure — unnecessary repetition? Could anything be extracted into a function?</li>
+        </ul>
+        <div class="callout callout-warn" style="margin-top:14px">
+          <span class="callout-icon">⚠️</span>
+          <span><strong>What to avoid:</strong> Rewriting the code for them, or giving so much feedback that nothing sticks. Pick the 2–3 most important things and go deep on those.</span>
+        </div>
+      </div>
+
+      <!-- Catch-up -->
+      <div class="session-detail card" id="sd-catchup" style="border-left:3px solid var(--accent-b)">
+        <p style="font-weight:600;margin-bottom:4px">📅 Catch-up Session — 30 min</p>
+        <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:14px">The student has fallen behind. This session is as much about clarity and momentum as it is about content.</p>
+        <p style="font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:8px">Suggested Flow</p>
+        <div class="flow-table">
+          <div class="flow-row"><span class="flow-time">0–5 min</span><span>Ask the student to explain what they've missed and why — no judgment, just understanding</span></div>
+          <div class="flow-row"><span class="flow-time">5–15 min</span><span>Identify the one concept gap that's most blocking their progress</span></div>
+          <div class="flow-row"><span class="flow-time">15–25 min</span><span>Work through that concept together</span></div>
+          <div class="flow-row"><span class="flow-time">25–30 min</span><span>Set a specific, achievable goal for the next week</span></div>
+        </div>
+        <p style="font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin:14px 0 8px">Things to Keep in Mind</p>
+        <ul style="font-size:13.5px">
+          <li>Don't try to catch them up on everything in one session. One concept done well is better than three concepts rushed.</li>
+          <li>End every Catch-up session with a concrete next action: "By next week, complete problems X and Y and come back if you're stuck."</li>
+          <li>If the student is behind due to external circumstances (illness, time zone issues), flag this to the Class Coordinator after the session — don't try to manage it yourself.</li>
+        </ul>
+      </div>
+
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('b2')" style="font-size:13px">← B2: Setup</button>
+      <button class="tab-btn active-b" onclick="showPage('b4')" style="font-size:13px">B4: Case Studies →</button>
+    </div>
+  </div>
+
+  <!-- ── B4 ── -->
+  <div class="page-section" id="page-b4">
+    <div class="doc-section">
+      <div class="section-header blue">
+        <div class="section-icon icon-blue"><span style="font-size:18px">📖</span></div>
+        <div><div class="section-num">SECTION B · B4</div><h2>Case Studies</h2></div>
+      </div>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Click a case to expand it.</p>
+
+      <div class="case-study" id="case-b1">
+        <div class="case-header" onclick="toggleCase('case-b1')">
+          <div class="case-num">1</div>
+          <span>The student expects you to walk them through the solution</span>
+          <span class="case-chevron">▼</span>
+        </div>
+        <div class="case-body">
+          <p style="font-size:13.5px">Eric books a Conceptual Session for a DP problem. He opens the session by saying "I have no idea — can you just explain how to solve it?"</p>
+          <div class="mistake-box"><div class="label">❌ Common mistake</div>You explain the approach from start to finish. Eric follows along, says "I get it now," and books another session next week for the same reason.</div>
+          <div class="todo-box"><div class="label">✅ What to do</div><ol><li>Acknowledge the feeling: "Totally fine — let's figure out where to start together."</li><li>Redirect: "Before I explain anything, can you tell me what the problem is asking in your own words?"</li><li>Build from what he does know, using questions. Even "I have no idea" students usually understand more than they think once you start asking.</li><li>If he genuinely can't engage, check whether he's watched the hint video — that's the right first step, not your explanation.</li></ol></div>
+        </div>
+      </div>
+
+      <div class="case-study" id="case-b2">
+        <div class="case-header" onclick="toggleCase('case-b2')">
+          <div class="case-num">2</div>
+          <span>The student's bug is obvious to you but you fix it too quickly</span>
+          <span class="case-chevron">▼</span>
+        </div>
+        <div class="case-body">
+          <p style="font-size:13.5px">Fiona books a Debugging Session. You glance at her code and immediately spot an off-by-one error in her loop.</p>
+          <div class="mistake-box"><div class="label">❌ Common mistake</div>You say "Line 12 — your loop condition should be <code>&lt; n</code> not <code>&lt;= n</code>." Fiona fixes it, the code passes, and she leaves having learned nothing about how to find bugs herself.</div>
+          <div class="todo-box"><div class="label">✅ What to do</div><ol><li>Don't point to the line directly. Instead: "Can you trace through what happens when the input is just one element?"</li><li>Let her trace through it herself until she reaches the wrong value.</li><li>Once she sees the wrong value: "So what should this have been? Where does that come from?"</li><li>She finds the bug. The fix takes 10 seconds — the understanding takes 10 minutes and is worth it.</li></ol></div>
+        </div>
+      </div>
+
+      <div class="case-study" id="case-b3">
+        <div class="case-header" onclick="toggleCase('case-b3')">
+          <div class="case-num">3</div>
+          <span>The student brings a problem clearly above their level</span>
+          <span class="case-chevron">▼</span>
+        </div>
+        <div class="case-body">
+          <p style="font-size:13.5px">George is in the 201-level class and books a Conceptual Session for a problem that's clearly 300-level material.</p>
+          <div class="todo-box"><div class="label">✅ What to do</div><ol><li>Don't attempt a full session on material outside your confidence range.</li><li>In the session: "This is a great problem — it's actually from the 300-level curriculum. Let me flag it for your coordinator so you get the right guidance."</li><li>Tag the session <strong>above-level question</strong> in Zoom after.</li><li>After 2 flags for the same student, the system auto-alerts management — you don't need to do anything further.</li></ol></div>
+        </div>
+      </div>
+
+      <div class="case-study" id="case-b4">
+        <div class="case-header" onclick="toggleCase('case-b4')">
+          <div class="case-num">4</div>
+          <span>The student no-shows</span>
+          <span class="case-chevron">▼</span>
+        </div>
+        <div class="case-body">
+          <p style="font-size:13.5px">You're in the Zoom room at the scheduled time. Five minutes pass and the student hasn't joined.</p>
+          <div class="todo-box"><div class="label">✅ What to do</div><p style="font-size:13.5px;margin-bottom:0">Follow the no-show protocol in the setup guide exactly.</p></div>
+          <div class="card" style="margin-top:12px;border-left:3px solid var(--accent-b);display:flex;align-items:center;gap:12px">
+            <span style="font-size:20px">📋</span>
+            <a href="https://stacy-q.github.io/xcamp-1on1-ta-onboarding/ta_sop_only.html" target="_blank" style="color:var(--accent-b);font-size:13.5px;text-decoration:none;font-weight:500">1 on 1 OH Setup Guide — Step 5: No-show Protocol →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('b3')" style="font-size:13px">← B3: Sessions</button>
+      <button class="tab-btn active-b" onclick="showPage('b5')" style="font-size:13px">B5: Checklist →</button>
+    </div>
+  </div>
+
+  <!-- ── B5 ── -->
+  <div class="page-section" id="page-b5">
+    <div class="doc-section">
+      <div class="section-header blue">
+        <div class="section-icon icon-blue"><span style="font-size:18px">✅</span></div>
+        <div><div class="section-num">SECTION B · B5</div><h2>Before Your First Session — Checklist</h2></div>
+      </div>
+
+      <div id="progress-b" class="progress-wrap">
+        <div class="progress-label"><span>Progress</span><span id="progress-b-text">0 / 6</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-b-fill" style="width:0%;background:var(--accent-b)"></div></div>
+      </div>
+
+      <ul class="checklist" id="checklist-b">
+        <li onclick="toggleCheck(this,'b')"><div class="check-box"></div><span class="check-label">Zoom setup fully completed and tested with PM (Steps 1–8 in setup guide)</span></li>
+        <li onclick="toggleCheck(this,'b')"><div class="check-box"></div><span class="check-label">All 4 booking URLs submitted to Program Manager</span></li>
+        <li onclick="toggleCheck(this,'b')"><div class="check-box"></div><span class="check-label">Go-live confirmation received from Program Manager</span></li>
+        <li onclick="toggleCheck(this,'b')"><div class="check-box"></div><span class="check-label">You have read through B3 and know the flow for each session type</span></li>
+        <li onclick="toggleCheck(this,'b')"><div class="check-box"></div><span class="check-label">You know how to add tags and TA notes in Zoom after a session</span></li>
+        <li onclick="toggleCheck(this,'b')"><div class="check-box"></div><span class="check-label">You know who the Class Coordinator is and how to reach them in Lark</span></li>
+      </ul>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('b4')" style="font-size:13px">← B4: Cases</button>
+      <button class="tab-btn" onclick="showPage('overview')" style="font-size:13px">↩ Back to Overview</button>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<script>
+  // ── Page navigation ──
+  function showPage(id) {
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('visible'));
+    document.getElementById('page-' + id).classList.add('visible');
+    document.querySelectorAll('.nav-item').forEach(n => {
+      n.classList.remove('active-a','active-b');
+      if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) {
+        n.classList.add(id.startsWith('b') ? 'active-b' : 'active-a');
+      }
+    });
+    window.scrollTo(0, 0);
+  }
+
+  // ── Section filter ──
+  function filterSection(sec) {
+    ['all','a','b'].forEach(s => {
+      document.getElementById('tab-'+s).className = 'tab-btn';
+    });
+    if (sec === 'all') document.getElementById('tab-all').classList.add('active-all');
+    if (sec === 'a')   document.getElementById('tab-a').classList.add('active-a');
+    if (sec === 'b')   document.getElementById('tab-b').classList.add('active-b');
+  }
+
+  // ── Role detail toggle ──
+  function showRole(role) {
+    ['zoom','disc','mgr'].forEach(r => {
+      document.getElementById('role-detail-'+r).style.display = 'none';
+      document.getElementById('role-'+r).className = 'role-pill';
+    });
+    document.getElementById('role-detail-'+role).style.display = 'block';
+    document.getElementById('role-'+role).classList.add(role === 'zoom' ? 'active-green' : role === 'disc' ? 'active-blue' : '');
+  }
+
+  // ── Session type toggle ──
+  function showSession(type) {
+    ['conceptual','debugging','review','catchup'].forEach(t => {
+      document.getElementById('sd-'+t).classList.remove('visible');
+      document.getElementById('sc-'+t).classList.remove('selected');
+    });
+    document.getElementById('sd-'+type).classList.add('visible');
+    document.getElementById('sc-'+type).classList.add('selected');
+  }
+
+  // ── Case study toggle ──
+  function toggleCase(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  // ── Checklist ──
+  function toggleCheck(el, section) {
+    el.classList.toggle('checked');
+    updateProgress(section);
+  }
+
+  function updateProgress(section) {
+    const list = document.getElementById('checklist-' + section);
+    const total = list.querySelectorAll('li').length;
+    const done  = list.querySelectorAll('li.checked').length;
+    const pct   = Math.round((done / total) * 100);
+    document.getElementById('progress-' + section + '-text').textContent = done + ' / ' + total;
+    document.getElementById('progress-' + section + '-fill').style.width = pct + '%';
+  }
+
+  // ── Init ──
+  filterSection('all');
+</script>
+</body>
+</html>
