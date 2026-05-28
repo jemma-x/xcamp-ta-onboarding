@@ -543,6 +543,10 @@
     <h1>TA Onboarding Guide</h1>
   </div>
 
+  <div class="nav-section">Start Here</div>
+  <a class="nav-item" onclick="showPage('overview')">🌐 Training Overview</a>
+  <a class="nav-item" onclick="showPage('s0')"><span class="section-badge" style="background:#fce7f3;color:#9d174d">S0</span> Platform Training</a>
+
   <div class="nav-section">Overview</div>
   <a class="nav-item" onclick="showPage('overview')">🌐 Support System</a>
 
@@ -575,21 +579,134 @@
 
   <!-- Section tabs -->
   <div class="section-tabs">
+    <button class="tab-btn" onclick="showPage('s0')" id="tab-s0" style="background:#fce7f3;border-color:#f9a8d4;color:#9d174d;font-weight:600">⚡ Start Here</button>
     <button class="tab-btn" onclick="filterSection('all')" id="tab-all">📚 All Sections</button>
     <button class="tab-btn" onclick="filterSection('a')" id="tab-a">🌙 Section A — HWN</button>
     <button class="tab-btn" onclick="filterSection('b')" id="tab-b">🗓 Section B — 1 on 1 OH</button>
     <button class="tab-btn" onclick="filterSection('c')" id="tab-c">🏫 Section C — In-Person</button>
   </div>
 
+  <!-- ── S0 Platform Training ── -->
+  <div class="page-section" id="page-s0">
+    <div class="doc-section">
+      <div class="section-header" style="border-bottom-color:#9d174d">
+        <div class="section-icon" style="background:#fce7f3"><span style="font-size:18px">⚡</span></div>
+        <div><div class="section-num">STEP 1 — REQUIRED</div><h2>Platform Training</h2></div>
+      </div>
+      <div class="callout" style="background:#fce7f3;border-left:3px solid #f472b6;margin-bottom:20px">
+        <span class="callout-icon">⚠️</span>
+        <span><strong>Complete this section before moving on to Section A, B, or C.</strong> You need access to all platforms before your first shift.</span>
+      </div>
+      <p>X-Camp uses four main platforms. You need to be set up on all of them before your first shift.</p>
+
+      <h3>📱 The Four Platforms</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0">
+        <div class="card" style="border-left:3px solid #9d174d">
+          <p style="font-weight:600;margin-bottom:4px">💬 Lark</p>
+          <p style="font-size:13.5px;color:var(--text-muted)">Internal communication — Messenger, Docs, Calendar, Tasks. This is how you stay in sync with the team.</p>
+        </div>
+        <div class="card" style="border-left:3px solid #9d174d">
+          <p style="font-weight:600;margin-bottom:4px">📚 learn.x-camp.org</p>
+          <p style="font-size:13.5px;color:var(--text-muted)">The learning site — courseware, slides, homework, recordings. Where you access all teaching materials.</p>
+        </div>
+        <div class="card" style="border-left:3px solid #9d174d">
+          <p style="font-weight:600;margin-bottom:4px">💭 Discourse</p>
+          <p style="font-size:13.5px;color:var(--text-muted)">The forum where students post homework questions and receive help from TAs. Central to HWN.</p>
+        </div>
+        <div class="card" style="border-left:3px solid #9d174d">
+          <p style="font-weight:600;margin-bottom:4px">📹 Zoom</p>
+          <p style="font-size:13.5px;color:var(--text-muted)">Used for HWN, 1 on 1 OH, and classes. You'll need to know the key host controls.</p>
+        </div>
+      </div>
+
+      <p style="font-size:13.5px;color:var(--text-muted)">For detailed setup instructions and tutorials, follow the full platform training doc:</p>
+      <div class="card" style="border-left:3px solid #9d174d;display:flex;align-items:center;gap:14px;margin:12px 0">
+        <span style="font-size:28px">📋</span>
+        <div>
+          <p style="font-weight:600;margin-bottom:3px">Full Platform Training Document</p>
+          <a href="https://x-camp-academy.sg.larksuite.com/wiki/CLQTwP26oipRsfkMRPXuyW1os0c" target="_blank" style="color:#9d174d;font-size:13.5px;text-decoration:none">Lecturer Platform Training — Lark Docs →</a>
+        </div>
+      </div>
+
+      <h3 style="margin-top:24px">✅ Platform Training Checklist</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:12px">Complete every item before moving on. If you get stuck, contact <strong>Kevin</strong> for platform/access issues.</p>
+
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Progress</span><span id="progress-s0-text">0 / 12</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-s0-fill" style="width:0%;background:#9d174d"></div></div>
+      </div>
+
+      <p style="font-weight:600;font-size:13px;margin:16px 0 8px">💬 Lark</p>
+      <ul class="checklist" id="checklist-s0a">
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Lark app installed and logged in</span></div></li>
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Found and joined the New Lecturers training groupchat</span></div></li>
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Written a self-introduction and posted it in a Lark group</span></div></li>
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Created a test calendar event and deleted it</span></div></li>
+      </ul>
+
+      <p style="font-weight:600;font-size:13px;margin:16px 0 8px">📚 Learning Site</p>
+      <ul class="checklist" id="checklist-s0b">
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Logged into learn.x-camp.org with credentials provided during onboarding</span></div></li>
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Found your assigned course(s) under My Classes</span></div></li>
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Located slides, homework, and hint/solution videos for your level</span></div></li>
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Know how to check student submission records</span></div></li>
+      </ul>
+
+      <p style="font-weight:600;font-size:13px;margin:16px 0 8px">💭 Discourse</p>
+      <ul class="checklist" id="checklist-s0c">
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Logged into x-camp.discourse.group</span></div></li>
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Pinned your level categories in the sidebar</span></div></li>
+      </ul>
+
+      <p style="font-weight:600;font-size:13px;margin:16px 0 8px">📹 Zoom</p>
+      <ul class="checklist" id="checklist-s0d">
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Zoom installed and updated to the latest version</span></div></li>
+        <li onclick="toggleCheckS0(this)"><div class="check-box"></div><div><span class="check-label">Set X-Camp background image for teaching sessions</span></div></li>
+      </ul>
+
+      <div class="callout" style="background:#fce7f3;border-left:3px solid #f472b6;margin-top:20px">
+        <span class="callout-icon">📌</span>
+        <span>Having trouble with access or permissions? Contact <strong>Kevin</strong>. For questions about the onboarding process itself, contact <strong>Jemma</strong>.</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:8px">
+      <button class="tab-btn" onclick="showPage('overview')" style="font-size:13px;background:#9d174d;border-color:#9d174d;color:#fff">Done — Go to Step 2 →</button>
+    </div>
+  </div>
+
   <!-- ── OVERVIEW ── -->
   <div class="page-section visible" id="page-overview">
     <div class="hero">
       <h1>📚 X-Camp TA Onboarding Guide</h1>
-      <p class="subtitle">Pick up from the platform walkthrough and learn how to do your job well.</p>
-      <div class="prereq">
-        ✅ <strong>Prerequisite:</strong> You have completed the platform walkthrough. This guide picks up from there.
+      <p class="subtitle">Everything you need to get started as an X-Camp TA — follow the steps below in order.</p>
+      <div style="margin-bottom:24px">
+        <p style="font-weight:600;font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px">Your Training Path</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fce7f3;border:1.5px solid #f9a8d4;border-radius:10px;cursor:pointer" onclick="showPage('s0')">
+            <div style="background:#9d174d;color:#fff;font-size:12px;font-weight:700;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+            <div>
+              <p style="font-weight:600;font-size:14px;margin-bottom:0">Platform Training</p>
+              <p style="font-size:12.5px;color:#9d174d;margin-bottom:0">⚡ Complete this first — required before anything else</p>
+            </div>
+            <span style="margin-left:auto;color:#9d174d;font-size:13px">→</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:10px">
+            <div style="background:#888;color:#fff;font-size:12px;font-weight:700;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+            <div>
+              <p style="font-weight:600;font-size:14px;margin-bottom:0">TA Role Training</p>
+              <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:0">Read the section(s) matching your assignment below</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:10px">
+            <div style="background:#888;color:#fff;font-size:12px;font-weight:700;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+            <div>
+              <p style="font-weight:600;font-size:14px;margin-bottom:0">Submit Completion Form</p>
+              <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:0">After finishing all assigned sections</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <p style="font-size:14px;color:var(--text-muted);margin-bottom:12px;">Jump directly to the section that matches your assignment:</p>
+      <p style="font-weight:600;font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px">Step 2 — Jump to your assigned section:</p>
       <div class="assignment-cards">
         <div class="assignment-card green" onclick="filterSection('a'); showPage('a1')">
           <div class="a-icon">🌙</div>
@@ -617,6 +734,24 @@
         <div>
           <strong>Assigned to more than one role?</strong>
           <p style="margin-top:4px;margin-bottom:0;font-size:13.5px">Read the sections that match your assignment. Use the top tabs to switch between sections anytime.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:20px">
+        <p style="font-weight:600;font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">📞 Who to Contact</p>
+        <div style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+          <div style="display:flex;gap:0;border-bottom:1px solid var(--border)">
+            <div style="padding:10px 14px;font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;width:40%;background:var(--bg)">Issue type</div>
+            <div style="padding:10px 14px;font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;background:var(--bg)">Contact</div>
+          </div>
+          <div style="display:flex;border-bottom:1px solid var(--border)">
+            <div style="padding:10px 14px;font-size:13.5px;width:40%;border-right:1px solid var(--border)">Platform access, account permissions, login issues</div>
+            <div style="padding:10px 14px;font-size:13.5px;font-weight:600">Kevin</div>
+          </div>
+          <div style="display:flex">
+            <div style="padding:10px 14px;font-size:13.5px;width:40%;border-right:1px solid var(--border)">HWN / OH / in-person workflow, onboarding process questions</div>
+            <div style="padding:10px 14px;font-size:13.5px;font-weight:600">Jemma</div>
+          </div>
         </div>
       </div>
     </div>
@@ -656,6 +791,13 @@
       <div class="section-header green">
         <div class="section-icon icon-green"><span style="font-size:18px">🎯</span></div>
         <div><div class="section-num">SECTION A · A1</div><h2>Your Goal</h2></div>
+      </div>
+      <div class="callout" style="background:#fce7f3;border-left:3px solid #f472b6;margin-bottom:20px">
+        <span class="callout-icon">⚡</span>
+        <div>
+          <strong>Before you start — have you completed Platform Training?</strong>
+          <p style="margin-top:4px;margin-bottom:0;font-size:13.5px">Platform Training is required before this section. If you haven't done it yet, <a href="javascript:showPage('s0')" style="color:#9d174d;font-weight:600">start here →</a></p>
+        </div>
       </div>
       <p>The goal of HWN is not to answer every question completely. It is to make sure <strong>every student who comes for help leaves with a clear next step.</strong></p>
       <div class="card" style="margin:16px 0">
@@ -756,6 +898,45 @@
       </div>
 
     </div>
+
+      <h3 style="margin-top:28px">🧠 Quick Check</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Make sure you understand the roles before your first shift.</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+
+        <div class="card" id="qa2r1" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q1. A student posts their Discourse link in Zoom chat. You're the Zoom Teacher but the question is beyond your level coverage. What do you do?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qa2r1','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r1-a">A. Answer it directly in Zoom chat</button>
+            <button onclick="answerQuiz('qa2r1','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r1-b">B. @ the Discourse TA and tell the student they're looking at it</button>
+            <button onclick="answerQuiz('qa2r1','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r1-c">C. Go to the Discourse post and answer it yourself</button>
+            <button onclick="answerQuiz('qa2r1','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r1-d">D. Tell the student to repost in a different level</button>
+          </div>
+          <div id="qa2r1-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qa2r2" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q2. You are the Discourse Teacher and the Zoom Teacher @ tags you on a question. What is your first response?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qa2r2','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r2-a">A. Start answering the question on Discourse immediately</button>
+            <button onclick="answerQuiz('qa2r2','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r2-b">B. Reply "Looking" in Zoom, then handle the Discourse post</button>
+            <button onclick="answerQuiz('qa2r2','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r2-c">C. Wait until you finish your current question first</button>
+            <button onclick="answerQuiz('qa2r2','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r2-d">D. Ask the Zoom Teacher to handle it instead</button>
+          </div>
+          <div id="qa2r2-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qa2r3" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q3. You answered a student by voice in Zoom and the issue is fully resolved. What tag do you apply to their Discourse post?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qa2r3','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r3-a">A. Replied</button>
+            <button onclick="answerQuiz('qa2r3','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r3-b">B. Answered by voice</button>
+            <button onclick="answerQuiz('qa2r3','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r3-c">C. Resolved</button>
+            <button onclick="answerQuiz('qa2r3','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2r3-d">D. Answered</button>
+          </div>
+          <div id="qa2r3-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+      </div>
     <div style="display:flex;justify-content:space-between;margin-top:8px">
       <button class="tab-btn" onclick="showPage('a1')" style="font-size:13px">← A1: Goal</button>
       <button class="tab-btn active-a" onclick="showPage('a3')" style="font-size:13px">A3: Judge Verdicts →</button>
@@ -784,6 +965,45 @@
         </table>
       </div>
     </div>
+
+      <h3 style="margin-top:28px">🧠 Quick Check</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Make sure you know your verdicts.</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+
+        <div class="card" id="qa3v1" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q1. A student says their code compiles and runs, but gives the wrong answer for some inputs. What verdict is this?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qa3v1','a','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v1-a">A. RE</button>
+            <button onclick="answerQuiz('qa3v1','b','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v1-b">B. CE</button>
+            <button onclick="answerQuiz('qa3v1','c','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v1-c">C. WA</button>
+            <button onclick="answerQuiz('qa3v1','d','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v1-d">D. TLE</button>
+          </div>
+          <div id="qa3v1-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qa3v2" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q2. A student gets TLE. What is the most useful first question to ask?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qa3v2','a','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v2-a">A. "Have you checked the compiler error message?"</button>
+            <button onclick="answerQuiz('qa3v2','b','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v2-b">B. "Does your code compile?"</button>
+            <button onclick="answerQuiz('qa3v2','c','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v2-c">C. "What algorithm are you currently using?"</button>
+            <button onclick="answerQuiz('qa3v2','d','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v2-d">D. "Have you found the wrong test case?"</button>
+          </div>
+          <div id="qa3v2-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qa3v3" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q3. What is the difference between RE and CE?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qa3v3','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v3-a">A. CE means wrong answer, RE means out of memory</button>
+            <button onclick="answerQuiz('qa3v3','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v3-b">B. CE means the code failed to compile; RE means the code compiled but crashed during execution</button>
+            <button onclick="answerQuiz('qa3v3','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v3-c">C. CE means too slow, RE means wrong answer</button>
+            <button onclick="answerQuiz('qa3v3','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3v3-d">D. They are the same thing</button>
+          </div>
+          <div id="qa3v3-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+      </div>
     <div style="display:flex;justify-content:space-between;margin-top:8px">
       <button class="tab-btn" onclick="showPage('a2')" style="font-size:13px">← A2: Roles</button>
       <button class="tab-btn active-a" onclick="showPage('a4')" style="font-size:13px">A4: Handling Questions →</button>
@@ -935,6 +1155,46 @@
         </div>
       </div>
     </div>
+
+      <h3 style="margin-top:28px">🧠 Quick Check</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Test your understanding before your first shift.</p>
+
+      <div id="quiz-a" style="display:flex;flex-direction:column;gap:12px">
+
+        <div class="card" id="qa1" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q1. A student posts a 300-level question but you're a 200-level TA. What do you do?</p>
+          <div style="display:flex;flex-direction:column;gap:6px" id="qa1-opts">
+            <button onclick="answerQuiz('qa1','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa1-a">A. Answer it anyway to be helpful</button>
+            <button onclick="answerQuiz('qa1','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa1-b">B. @ the correct Discourse TA and let the student know</button>
+            <button onclick="answerQuiz('qa1','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa1-c">C. Tell the student to come back tomorrow</button>
+            <button onclick="answerQuiz('qa1','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa1-d">D. Ignore it</button>
+          </div>
+          <div id="qa1-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qa2" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q2. You have 6 students waiting. What's the right approach?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qa2','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2-a">A. Fully resolve the first student before moving to the next</button>
+            <button onclick="answerQuiz('qa2','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2-b">B. Use rounds — give each student a quick nudge first, then come back</button>
+            <button onclick="answerQuiz('qa2','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2-c">C. Ask students to wait and handle them one by one</button>
+            <button onclick="answerQuiz('qa2','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa2-d">D. Only answer questions you can solve quickly</button>
+          </div>
+          <div id="qa2-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qa3" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q3. A student's code has a WA. They ask for help. What's your first move?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qa3','a','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3-a">A. Read their code and tell them what's wrong</button>
+            <button onclick="answerQuiz('qa3','b','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3-b">B. Give them the correct solution</button>
+            <button onclick="answerQuiz('qa3','c','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3-c">C. Ask: "Have you found the test case where your output is wrong?"</button>
+            <button onclick="answerQuiz('qa3','d','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qa3-d">D. Tell them to watch the solution video</button>
+          </div>
+          <div id="qa3-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+      </div>
     <div style="display:flex;justify-content:space-between;margin-top:8px">
       <button class="tab-btn" onclick="showPage('a4')" style="font-size:13px">← A4: Questions</button>
       <button class="tab-btn active-a" onclick="showPage('a6')" style="font-size:13px">A6: Checklist →</button>
@@ -994,6 +1254,13 @@
       <div class="section-header blue">
         <div class="section-icon icon-blue"><span style="font-size:18px">🎯</span></div>
         <div><div class="section-num">SECTION B · B1</div><h2>Your Goal</h2></div>
+      </div>
+      <div class="callout" style="background:#fce7f3;border-left:3px solid #f472b6;margin-bottom:20px">
+        <span class="callout-icon">⚡</span>
+        <div>
+          <strong>Before you start — have you completed Platform Training?</strong>
+          <p style="margin-top:4px;margin-bottom:0;font-size:13.5px">Platform Training is required before this section. If you haven't done it yet, <a href="javascript:showPage('s0')" style="color:#9d174d;font-weight:600">start here →</a></p>
+        </div>
       </div>
       <p>1 on 1 OH is a scheduled, one-on-one session between you and a single student. Unlike HWN where you're managing multiple students at once, here you have the student's full attention — and they have yours.</p>
       <p>That higher level of focus comes with a higher standard. Students book a session because they're stuck on something specific. Your job is to make sure they leave with <strong>a real understanding of what was wrong and how to think about it next time</strong> — not just a fixed piece of code.</p>
@@ -1174,6 +1441,45 @@
       </div>
 
     </div>
+
+      <h3 style="margin-top:28px">🧠 Quick Check</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Make sure you know which session type fits which situation.</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+
+        <div class="card" id="qb3s1" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q1. A student has AC code and wants feedback on whether their solution could be more efficient. Which session type is right?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qb3s1','a','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s1-a">A. Conceptual Session</button>
+            <button onclick="answerQuiz('qb3s1','b','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s1-b">B. Debugging Session</button>
+            <button onclick="answerQuiz('qb3s1','c','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s1-c">C. Code Review</button>
+            <button onclick="answerQuiz('qb3s1','d','c')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s1-d">D. Catch-up Session</button>
+          </div>
+          <div id="qb3s1-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qb3s2" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q2. A student missed 3 weeks and has no idea where to start. Which session type is right?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qb3s2','a','d')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s2-a">A. Conceptual Session</button>
+            <button onclick="answerQuiz('qb3s2','b','d')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s2-b">B. Debugging Session</button>
+            <button onclick="answerQuiz('qb3s2','c','d')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s2-c">C. Code Review</button>
+            <button onclick="answerQuiz('qb3s2','d','d')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s2-d">D. Catch-up Session</button>
+          </div>
+          <div id="qb3s2-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qb3s3" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q3. During a Catch-up Session the student keeps bringing up more and more topics. What do you do?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qb3s3','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s3-a">A. Cover everything so they are fully caught up</button>
+            <button onclick="answerQuiz('qb3s3','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s3-b">B. Focus on the one most critical gap and end with a concrete next step</button>
+            <button onclick="answerQuiz('qb3s3','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s3-c">C. Extend the session beyond 30 minutes</button>
+            <button onclick="answerQuiz('qb3s3','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3s3-d">D. Book another session immediately</button>
+          </div>
+          <div id="qb3s3-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+      </div>
     <div style="display:flex;justify-content:space-between;margin-top:8px">
       <button class="tab-btn" onclick="showPage('b2')" style="font-size:13px">← B2: Setup</button>
       <button class="tab-btn active-b" onclick="showPage('b4')" style="font-size:13px">B4: Case Studies →</button>
@@ -1243,6 +1549,46 @@
         </div>
       </div>
     </div>
+
+      <h3 style="margin-top:28px">🧠 Quick Check</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Test your understanding before your first session.</p>
+
+      <div style="display:flex;flex-direction:column;gap:12px">
+
+        <div class="card" id="qb1" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q1. A student books a Conceptual Session and says "just explain how to solve it." What do you do?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qb1','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb1-a">A. Explain the approach step by step</button>
+            <button onclick="answerQuiz('qb1','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb1-b">B. Ask them to explain what the problem is asking first, then build from there</button>
+            <button onclick="answerQuiz('qb1','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb1-c">C. Tell them to watch the hint video and end the session</button>
+            <button onclick="answerQuiz('qb1','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb1-d">D. Give them pseudocode to follow</button>
+          </div>
+          <div id="qb1-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qb2" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q2. During a Debugging Session you immediately spot the bug. What do you do?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qb2','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb2-a">A. Point to the exact line and explain the fix</button>
+            <button onclick="answerQuiz('qb2','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb2-b">B. Ask the student to trace through the logic for a simple input until they find it themselves</button>
+            <button onclick="answerQuiz('qb2','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb2-c">C. Fix the code for them to save time</button>
+            <button onclick="answerQuiz('qb2','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb2-d">D. Tell them the bug is on a specific line without explaining why</button>
+          </div>
+          <div id="qb2-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qb3" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q3. A student no-shows. At T+5 you've sent an email. What do you do at T+8?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qb3','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3-a">A. End the meeting and move on</button>
+            <button onclick="answerQuiz('qb3','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3-b">B. Message the Class Coordinator in Lark to flag the no-show</button>
+            <button onclick="answerQuiz('qb3','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3-c">C. Contact the student's parents directly</button>
+            <button onclick="answerQuiz('qb3','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qb3-d">D. Wait until T+30 before doing anything</button>
+          </div>
+          <div id="qb3-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+      </div>
     <div style="display:flex;justify-content:space-between;margin-top:8px">
       <button class="tab-btn" onclick="showPage('b3')" style="font-size:13px">← B3: Sessions</button>
       <button class="tab-btn active-b" onclick="showPage('b5')" style="font-size:13px">B5: Checklist →</button>
@@ -1295,6 +1641,13 @@
         <div class="section-icon" style="background:#fef3e2"><span style="font-size:18px">🎯</span></div>
         <div><div class="section-num">SECTION C · C1</div><h2>Your Goal</h2></div>
       </div>
+      <div class="callout" style="background:#fce7f3;border-left:3px solid #f472b6;margin-bottom:20px">
+        <span class="callout-icon">⚡</span>
+        <div>
+          <strong>Before you start — have you completed Platform Training?</strong>
+          <p style="margin-top:4px;margin-bottom:0;font-size:13.5px">Platform Training is required before this section. If you haven't done it yet, <a href="javascript:showPage('s0')" style="color:#9d174d;font-weight:600">start here →</a></p>
+        </div>
+      </div>
       <p>In-person TA work is different from HWN and 1 on 1 OH. You're physically present in the classroom, which means you're responsible for both the learning environment and individual student support — at the same time.</p>
       <div class="card" style="margin:16px 0">
         <p style="margin-bottom:10px;font-weight:600;font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">Your three responsibilities</p>
@@ -1339,6 +1692,34 @@
         <li onclick="toggleCheck(this,'c2')"><div class="check-box"></div><div><span class="check-label" style="font-weight:600">Tech check</span><br><span style="font-size:13px;color:var(--text-muted)">Projector, student logins, IDE accessible</span></div></li>
       </ul>
     </div>
+
+      <h3 style="margin-top:28px">🧠 Quick Check</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Pre-class prep matters.</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+
+        <div class="card" id="qc2p1" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q1. You arrive exactly when class starts. Is this acceptable?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qc2p1','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2p1-a">A. Yes, as long as you are not late</button>
+            <button onclick="answerQuiz('qc2p1','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2p1-b">B. No — you should arrive 10 minutes early to complete pre-class setup</button>
+            <button onclick="answerQuiz('qc2p1','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2p1-c">C. It depends on whether there are students already there</button>
+            <button onclick="answerQuiz('qc2p1','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2p1-d">D. Yes, setup can be done during class</button>
+          </div>
+          <div id="qc2p1-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qc2p2" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q2. A parent tells you their child has been struggling with confidence this week. What do you do with this information?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qc2p2','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2p2-a">A. Reassure the parent that everything is fine</button>
+            <button onclick="answerQuiz('qc2p2','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2p2-b">B. Note it and pass the concern to the lead teacher</button>
+            <button onclick="answerQuiz('qc2p2','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2p2-c">C. Make a note but keep it to yourself</button>
+            <button onclick="answerQuiz('qc2p2','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2p2-d">D. Address it directly with the student during class</button>
+          </div>
+          <div id="qc2p2-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+      </div>
     <div style="display:flex;justify-content:space-between;margin-top:8px">
       <button class="tab-btn" onclick="showPage('c1')" style="font-size:13px">← C1: Goal</button>
       <button class="tab-btn active-c" onclick="showPage('c3')" style="font-size:13px">C3: In-Class Role →</button>
@@ -1479,6 +1860,35 @@
         <span>Step 4 is a ladder, not a list — start from Direction and only move down if the student is genuinely still stuck. <strong>Answer is always the last resort.</strong></span>
       </div>
     </div>
+
+      <h3 style="margin-top:28px">🧠 Quick Check</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px">Test your understanding before your first in-person shift.</p>
+
+      <div style="display:flex;flex-direction:column;gap:12px">
+
+        <div class="card" id="qc1" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q1. A student is gaming for the second time. What do you do?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qc1','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc1-a">A. Give another verbal warning</button>
+            <button onclick="answerQuiz('qc1','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc1-b">B. Record the student's name and time, then quietly move them to the front row</button>
+            <button onclick="answerQuiz('qc1','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc1-c">C. Immediately notify the parents</button>
+            <button onclick="answerQuiz('qc1','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc1-d">D. Remove them from the session</button>
+          </div>
+          <div id="qc1-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+        <div class="card" id="qc2" style="border-left:3px solid var(--border)">
+          <p style="font-weight:600;font-size:14px;margin-bottom:12px">Q2. A student asks for help and you can see the answer immediately. What's your first step?</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="answerQuiz('qc2','a','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2-a">A. Tell them the answer so they can move on quickly</button>
+            <button onclick="answerQuiz('qc2','b','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2-b">B. Ask "What are you trying to do? What have you tried?" first</button>
+            <button onclick="answerQuiz('qc2','c','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2-c">C. Direct them to Discourse</button>
+            <button onclick="answerQuiz('qc2','d','b')" style="text-align:left;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'DM Sans',sans-serif;font-size:13.5px;cursor:pointer" id="qc2-d">D. Ask the lead teacher to handle it</button>
+          </div>
+          <div id="qc2-result" style="display:none;margin-top:10px;font-size:13.5px;padding:10px 14px;border-radius:8px"></div>
+        </div>
+
+      </div>
     <div style="display:flex;justify-content:space-between;margin-top:8px">
       <button class="tab-btn" onclick="showPage('c4')" style="font-size:13px">← C4: Gaming</button>
       <button class="tab-btn active-c" onclick="showPage('c6')" style="font-size:13px">C6: After Class →</button>
@@ -1630,6 +2040,70 @@
     document.getElementById('progress-' + section + '-fill').style.width = pct + '%';
   }
 
+
+
+  // ── Quiz ──
+  function answerQuiz(qid, chosen, correct) {
+    const result = document.getElementById(qid + '-result');
+    const chosenBtn = document.getElementById(qid + '-' + chosen);
+    const correctBtn = document.getElementById(qid + '-' + correct);
+    // Disable all buttons
+    const card = document.getElementById(qid);
+    card.querySelectorAll('button').forEach(b => b.disabled = true);
+    // Style chosen
+    if (chosen === correct) {
+      chosenBtn.style.background = '#d1fae5';
+      chosenBtn.style.borderColor = '#059669';
+      result.style.background = '#d1fae5';
+      result.style.color = '#065f46';
+      result.innerHTML = "✅ Correct! " + getQuizExplanation(qid, correct);
+    } else {
+      chosenBtn.style.background = '#fee2e2';
+      chosenBtn.style.borderColor = '#dc2626';
+      correctBtn.style.background = '#d1fae5';
+      correctBtn.style.borderColor = '#059669';
+      result.style.background = '#fee2e2';
+      result.style.color = '#991b1b';
+      result.innerHTML = "❌ Not quite. " + getQuizExplanation(qid, correct);
+    }
+    result.style.display = 'block';
+  }
+
+  function getQuizExplanation(qid, correct) {
+    const explanations = {
+      'qa1': 'Always hand off questions outside your level coverage — @ the correct Discourse TA and let the student know.',
+      'qa2': 'Use rounds so no student waits too long. Give everyone a quick nudge first, then go deeper.',
+      'qa3': 'Ask first before jumping to guidance. "Have you found the wrong test case?" helps the student locate the issue themselves.',
+      'qb1': 'Start with questions, not explanations. Even students who say "no idea" usually understand more than they think.',
+      'qb2': 'Let the student find the bug through tracing. The fix takes seconds — the understanding is what matters.',
+      'qb3': 'At T+8 you contact the Class Coordinator via Lark. You never contact parents directly.',
+      'qc1': 'Second offense = record name + time and quietly move their seat. No lecture needed.',
+      'qc2': 'Always start with Step 1 of the help framework: understand what they are trying to do and what they have tried.',
+      'qa2r1': 'As Zoom Teacher, 200-level is outside your coverage. @ the Discourse TA and let the student know.',
+      'qa2r2': 'Always acknowledge first — reply "Looking" in Zoom so the student and Zoom Teacher know you have picked it up.',
+      'qa2r3': 'Answered by voice means the issue was fully resolved verbally with no written reply needed on Discourse.',
+      'qa3v1': 'WA means the code runs correctly but produces wrong output. RE would mean it crashed, CE means it did not compile.',
+      'qa3v2': 'TLE is about algorithm efficiency. The right question is about their current approach, not compilation or test cases.',
+      'qa3v3': 'CE means the code failed to compile due to syntax errors. RE means it compiled fine but crashed while running.',
+      'qb3s1': 'Code Review is for accepted code where the student wants quality feedback — efficiency, readability, edge cases.',
+      'qb3s2': 'Catch-up Session is designed exactly for students who have fallen behind and need help getting back on track.',
+      'qb3s3': 'One concept done well is better than three rushed. End with a concrete next action, not an exhaustive review.',
+      'qc2p1': 'Arriving 10 minutes early is required paid working time — not optional. Pre-class setup cannot happen during class.',
+      'qc2p2': 'Collect parent concerns during greeting and pass them to the lead teacher. Do not handle parent concerns independently.'
+    };
+    return explanations[qid] || '';
+  }
+
+  // ── S0 checklist (combined across sub-lists) ──
+  function toggleCheckS0(el) {
+    el.classList.toggle('checked');
+    // Count all s0 checklists
+    const total = document.querySelectorAll('[id^="checklist-s0"] li').length;
+    const done  = document.querySelectorAll('[id^="checklist-s0"] li.checked').length;
+    const pct   = Math.round((done / total) * 100);
+    document.getElementById('progress-s0-text').textContent = done + ' / ' + total;
+    document.getElementById('progress-s0-fill').style.width = pct + '%';
+  }
 
   // ── Password gate ──
   function checkPassword() {
